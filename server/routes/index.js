@@ -1,8 +1,14 @@
 const express = require('express');
 const router = express.Router();
-const pg = require('pg');
-const path = require('path');
-const connectionString = process.env.DATABASE_URL || 'postgres://postgres:Lscooter11@localhost:5432/pia';
+var db = require('../data/queries');
+
+
+router.get('/api/puppies', db.getAllPuppies);
+router.get('/api/puppies/:id', db.getSinglePuppy);
+router.post('/api/puppies', db.createPuppy);
+router.put('/api/puppies/:id', db.updatePuppy);
+router.delete('/api/puppies/:id', db.removePuppy);
+
 
 router.get('/', (req, res, next) => {
   res.sendFile(path.join(
@@ -11,6 +17,7 @@ router.get('/', (req, res, next) => {
 
 // TODO: refactor. switch over to pg-promise. seperate into data folder
 
+/*
 router.get('/api/v1/todos', (req, res, next) => {
   const results = [];
   // Get a Postgres client from the connection pool
@@ -122,5 +129,6 @@ router.delete('/api/v1/todos/:todo_id', (req, res, next) => {
     });
   });
 });
+*/
 
 module.exports = router;
