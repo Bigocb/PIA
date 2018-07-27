@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 var db = require('../data/queries');
 
+// theae will provide rhe content for tbe elements
 
 router.get('/api/puppies', db.getAllPuppies);
 router.get('/api/puppies/:id', db.getSinglePuppy);
