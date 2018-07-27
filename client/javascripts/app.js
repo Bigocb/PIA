@@ -3,7 +3,7 @@ angular.module('nodeTodo', [])
   $scope.formData = {};
   $scope.todoData = {};
   // Get all todos
-  $http.get('/api/v1/todos')
+  $http.get('/api/puppies')
   .success((data) => {
     $scope.todoData = data;
     console.log(data);

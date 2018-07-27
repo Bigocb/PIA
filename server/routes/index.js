@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-var db = require('../data/queries');
+var db = require('../../data/queries');
 
 // theae will provide rhe content for tbe elements
 
