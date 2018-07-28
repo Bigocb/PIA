@@ -12,7 +12,7 @@ var options = {
 
 
 var requestsweather = [{
-  url: 'http://api.wunderground.com/api/c865737e39b62869/conditions/q/NC/Charlotte.json',
+  url: 'http://api.wunderground.com/api/c865737e39b62869/conditions/q/28270.json',
 }];
 
 function getWeather(req, res, next) {
