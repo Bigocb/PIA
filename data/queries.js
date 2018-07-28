@@ -18,17 +18,21 @@ function getAllPuppies(req, res, next) {
   var node2 = 'display_location';
   var state = 'state_name';
   var city = 'city';
-  db.any('select distinct'+
+  var zip = 'zip';
+  var obt = 'observation_time';
+  var tmp = 'temp_f';
+  db.any('select distinct '+
   '((response_data -> $2)->$3)->>$4 as state,'+
-  '((response_data -> $2)->$3)->>$5 as city'+
-  ' from responses where category = $1 ',[cat,node,node2,state,city])
+  '((response_data -> $2)->$3)->>$5 as city,'+
+  '((response_data -> $2)->$3)->>$6 as zip,'+
+  '((response_data -> $2)->>$7) as observation_time,'+
+  '((response_data -> $2)->>$8) as temp_f'+
+  ' from responses where category = $1 ',[cat,node,node2,state,city,zip,obt,tmp])
     .then(function (data) {
       res.status(200)
         .json({
-          status: 'success',
-          data: data,
-          message: 'Retrieved ALL puppies'
-        });
+                data: data,
+               });
         console.log(data);
     })
     .catch(function (err) {

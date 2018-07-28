@@ -7,13 +7,19 @@ a {
   color: #00B7FF;
 }
 
+.todo-form {
+  float: left;
+  width: 20%;
+  clear: left;  
+}
+
 ul {
   list-style-type: none;
   padding-left: 10px;
 }
 
 .container {
-  max-width: 400px;
+  max-width: 90%;
   background-color: #eeeeee;
   border: 1px solid black;
 }
@@ -21,3 +27,25 @@ ul {
 .header {
   text-align: center;
 }
+
+.pref-user {
+  float: left;
+  width: 20%;
+  clear: left;
+}
+
+.todo_list {
+  max-width: 90%;
+}
+
+.dstresm {
+  height: 500px;
+}
+
+.toolbardemoBasicUsage md-toolbar .md-button.md-icon-button .favorite-icon {
+  fill: #DE3641; }
+
+.toolbardemoBasicUsage md-toolbar md-toolbar-filler {
+  background-color: #e0e0e0; }
+  .toolbardemoBasicUsage md-toolbar md-toolbar-filler #filler-icon {
+    fill: #4C9EF1; }

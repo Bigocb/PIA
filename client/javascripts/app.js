@@ -23,6 +23,18 @@ angular.module('nodeTodo', [])
       console.log('Error: ' + error);
     });
   };
+  // Maually Refresh Weather
+  $scope.getWeather = () => {
+    $http.get('/test', $scope.formData)
+    .success((data) => {
+      $scope.formData = {};
+      $scope.todoData = data;
+      console.log(data);
+    })
+    .error((error) => {
+      console.log('Error: ' + error);
+    });
+  };
   // Delete a todo
   $scope.deleteTodo = (todoID) => {
     $http.delete('/api/v1/todos/' + todoID)

@@ -6,56 +6,104 @@
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" media="screen">
     <link rel="stylesheet" href="/stylesheets/style.css" media="screen">
   	<link rel="shortcut icon" type="image/png" href="/media/images/favicon.png">
-	<link rel="alternate" type="application/rss+xml" title="RSS 2.0" href="http://www.datatables.net/rss.xml">
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link rel="alternate" type="application/rss+xml" title="RSS 2.0" href="http://www.datatables.net/rss.xml">
 	<link rel="stylesheet" type="text/css" href="/media/css/site-examples.css?_=19472395a2969da78c8a4c707e72123a">
-	<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
-	<style type="text/css" class="init">
-	
-	</style>
-	<script type="text/javascript" src="/media/js/site.js?_=5e8f232afab336abc1a1b65046a73460"></script>
-	<script type="text/javascript" src="/media/js/dynamic.php?comments-page=examples%2Fbasic_init%2Fzero_configuration.html" async></script>
+  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
+  <style>
+      .toggler {
+        width: 500px;
+        height: 200px;
+      }
+      #button {
+        padding: .5em 1em;
+        text-decoration: none;
+      }
+      #effect {
+        position: relative;
+        width: 240px;
+        height: 170px;
+        padding: 0.4em;
+      }
+      #effect h3 {
+        margin: 0;
+        padding: 0.4em;
+        text-align: center;
+      }
+      </style>
 	<script type="text/javascript" language="javascript" src="https://code.jquery.com/jquery-3.3.1.js"></script>
 	<script type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
-	<script type="text/javascript" language="javascript" src="../resources/demo.js"></script>
-	<script type="text/javascript" class="init">
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+ <script>
+  $( function() {
+    $( "#accordion" ).accordion({
+      collapsible: true,
+      heightStyle: "content"
+    });
+  } );
+  </script>
+  <script type="text/javascript">
 	
-
-$(document).ready(function() {
-	$('#example').dataTable( {
-  "ajax": {
+  $(document).ready(function() {
+    $('#example').DataTable( {
+            "ajax": {
     "url": "http://localhost:3000/api/puppies",
-    "type": "GET"
-  }
-} );
+   },
+   "columns": [
+            { "data": "state" },
+            { "data": "city" },
+            { "data": "zip" },
+            { "data": "observation_time" },
+            { "data": "temp_f" }
+                  ]
+    } );
 } );
 
 
-	</script>
+  </script>
+
   </head>
   <body ng-controller="mainController">
     <div class="container">
-      <div class="header">
-        <h1>Todo App</h1>
-        <hr>
-        <h1 class="lead">Node + Express + Angular + PostgreSQL</h1>
-      </div>
-      <div class="todo-form">
-        <form>
-          <div class="form-group">
-            <input type="text" class="form-control input-lg" placeholder="Enter text..." ng-model="formData.text">
+        <div class="todo_list" id="accordion">
+        <h3>Settings</h3>
+        <div>
+                  <form>
+               
+                  <input type="text" class="form-control input-lg" placeholder="Enter text..." ng-model="formData.text">
+                
+                <button type="submit" class="btn btn-primary btn-lg btn-block" ng-click="createTodo()">Adjust Zip</button>
+              </form>
+              <button type="submit" class="btn btn-primary btn-lg btn-block" ng-click="getWeather()">Refresh Weather</button>
+            
+        </div>
+        <h3>Weather</h3>
+        <div class="dstream">
+            <table id="example" class="display" style="width:100%">
+                <thead>
+                    <tr>
+                        <th>State</th>
+                        <th>City</th>
+                        <th>Zip</th>
+                        <th>Time</th>
+                        <th>Temp</th>
+          
+                    </tr>
+                </thead>
+                <tfoot>
+                    <tr>
+                      <th>State</th>
+                      <th>City</th>
+                      <th>Zip</th>
+                      <th>Time</th>
+                      <th>Temp</th>
+                    </tr>
+                </tfoot>
+            </table>
           </div>
-          <button type="submit" class="btn btn-primary btn-lg btn-block" ng-click="createTodo()">Add Todo</button>
-        </form>
       </div>
-      <br>
-      <div class="todo-list">
-        <ul ng-repeat="todo in todoData">
-          <li><h3><input class="lead" type="checkbox" ng-click="deleteTodo(todo.id)">&nbsp;{{ todo.message }}</h3></li><hr>
-        </ul>
-      </div>
-    </div>
-    <script src="//code.jquery.com/jquery-2.2.4.min.js" type="text/javascript"></script>
-    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" type="text/javascript"></script>
+     
+        </div>
     <script src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.6/angular.min.js"></script>
     <script src="javascripts/app.js"></script>
   </body>

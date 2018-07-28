@@ -6,6 +6,7 @@
     "start": "supervisor ./bin/www"
   },
   "dependencies": {
+    "angular-datatables": "^6.0.0",
     "blubird": "0.0.1-security",
     "bluebird": "^3.5.1",
     "body-parser": "~1.15.1",

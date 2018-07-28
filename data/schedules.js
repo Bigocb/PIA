@@ -7,4 +7,4 @@ setInterval(function() {
     request("http://localhost:3000/test", function(error, response, body) {
     console.log(body);
   });
-  }, 600000);
+  }, 150000);
