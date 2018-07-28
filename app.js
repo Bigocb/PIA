@@ -1,4 +1,6 @@
 const express = require('express');
+const router = express.Router();
+var inb = require('./data/inbound');
 const path = require('path');
 const favicon = require('serve-favicon');
 const logger = require('morgan');
@@ -55,6 +57,7 @@ app.use((err, req, res, next) => {
     error: {}
   });
 });
+
 
 
 module.exports = app;
