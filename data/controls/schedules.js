@@ -34,6 +34,7 @@ setInterval(function() {
   }, 600000);
 
 //TODO: change url to relative
+ 
 
   //news Polling
 setInterval(function() {   
