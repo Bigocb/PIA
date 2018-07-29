@@ -85,8 +85,7 @@ function getMedia(req, res, next) {
     return request(obj).then(function(body) {
       return parseString(body, function (err, result) {
      console.dir(JSON.stringify(result));
-            });
-        console.log(result);
+              });
     });
   }).then(function(results) {
     console.log(results);
