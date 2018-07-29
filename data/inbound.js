@@ -2,9 +2,7 @@ var Promise = require("bluebird");
 const express = require('express');
 var request = require('request-promise');
 const router = express.Router();
-var pgp = require('pg-promise')(options);
-var connectionString = 'postgres://postgres:Lscooter11@localhost:5432/pia';
-var db = pgp(connectionString);
+var db = require('../database/connections');
 var parseString = require('xml2js').parseString;
 
 var options = {
@@ -84,13 +82,13 @@ function getMedia(req, res, next) {
   Promise.map(requestsmedia, function(obj) {
     return request(obj).then(function(body) {
       return parseString(body, function (err, result) {
-     console.dir(JSON.stringify(result));
+         console.dir(JSON.stringify(result));
               });
-    });
-  }).then(function(results) {
-    console.log(results);
-    for (var i = 0; i < results.length; i++) {
-      insJson = results[i];
+        });
+  }).then(function(result) {
+   // console.log(result);
+    for (var i = 0; i < result.length; i++) {
+      insJson = result[i];
       var source = 'media';
        db.none('insert into responses(response_data, response_key, category)' +
       'values($1,extract(epoch from current_timestamp),$2)',
@@ -102,7 +100,7 @@ function getMedia(req, res, next) {
           message: 'Inserted one puppy',
           data: insJson
         });
-  
+     //   console.log(insJson);
     })
     }
   }, function(err) {
