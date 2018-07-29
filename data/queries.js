@@ -1,16 +1,7 @@
 const express = require('express');
 var promise = require('bluebird');
 var inb = require('../data/inbound');
-
-var options = {
-  // Initialization Options
-  promiseLib: promise
-};
-//TODO: move to single db file for connections
-var pgp = require('pg-promise')(options);
-var connectionString = 'postgres://postgres:Lscooter11@localhost:5432/pia';
-//var connectionString = 'postgres://localhost:5432/pia';
-var db = pgp(connectionString);
+var db = require('../database/connections');
 
 //TODO: tune query to avoid multiples without distinct
 function getAllPuppies(req, res, next) {

@@ -1,18 +1,16 @@
 const express = require('express');
 const router = express.Router();
 const path = require('path');
-var request = require('request-promise');
-var db = require('../../data/queries');
+var qu = require('../../data/queries');
 var inb = require('../../data/inbound');
-var inb2 = require('../../data/controls/schedules');
-
+var sch = require('../../data/controls/schedules')
 
 // outbound data routes 
-router.get('/api/puppies', db.getAllPuppies);
-router.get('/api/puppies/:id', db.getSinglePuppy);
-router.post('/api/puppies', db.createPuppy);
-router.put('/api/puppies/:id', db.updatePuppy);
-router.delete('/api/puppies/:id', db.removePuppy);
+router.get('/api/puppies', qu.getAllPuppies);
+router.get('/api/puppies/:id', qu.getSinglePuppy);
+router.post('/api/puppies', qu.createPuppy);
+router.put('/api/puppies/:id', qu.updatePuppy);
+router.delete('/api/puppies/:id', qu.removePuppy);
 
 // external API routes (inbound)
 router.get('/weather', inb.getWeather);
