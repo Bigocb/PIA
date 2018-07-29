@@ -13,7 +13,9 @@ router.get('/api/puppies/:id', db.getSinglePuppy);
 router.post('/api/puppies', db.createPuppy);
 router.put('/api/puppies/:id', db.updatePuppy);
 router.delete('/api/puppies/:id', db.removePuppy);
-router.get('/test', inb.getWeather);
+router.get('/weather', inb.getWeather);
+router.get('/media', inb.getMedia);
+router.get('/news', inb.getNews);
 
 router.get('/', (req, res, next) => {
   res.sendFile(path.join(

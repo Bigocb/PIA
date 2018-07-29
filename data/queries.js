@@ -74,7 +74,7 @@ function createPuppy(req, res, next) {
     });
 }
 
-// TODO refactor function to serve all polling updates
+// TODO: refactor function to serve all polling updates
 function updatePuppy(req, res, next) {
   db.none('update pups set name=$1, breed=$2, age=$3, sex=$4 where id=$5',
     [req.body.name, req.body.breed, parseInt(req.body.age),
