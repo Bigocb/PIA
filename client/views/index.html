@@ -10,6 +10,10 @@
     <link rel="alternate" type="application/rss+xml" title="RSS 2.0" href="http://www.datatables.net/rss.xml">
 	<link rel="stylesheet" type="text/css" href="/media/css/site-examples.css?_=19472395a2969da78c8a4c707e72123a">
   <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
+  <link rel="stylesheet" href="../../node_modules/angular-ui-switch/angular-ui-switch.min.css"/>
+  <link href="https://gitcdn.github.io/angular-bootstrap-toggle/{version}/dist/angular-bootstrap-toggle.min.css" rel="stylesheet">
+<script src="https://gitcdn.github.io/bootstrap-toggle/{version}/dist/angular-bootstrap-toggle.min.js"></script>
+  
   <style>
       .toggler {
         width: 500px;
@@ -66,9 +70,18 @@
 
   </script>
 
+
   </head>
-  <body ng-controller="mainController">
-    <div class="container">
+  <body >
+  <script src="../../node_modules/angular-ui-switch/angular-ui-switch.min.js"></script>
+    <div ng-controller="mainController" class="container">
+        <div>
+            <select ng-model="ddlFruits" ng-options="fruit.Id as fruit.Name for fruit in Fruits">
+            </select>
+            <br />
+            <br />
+            <input type="button" value = "Get" ng-click = "GetValue()" />
+        </div>
         <div class="todo_list" id="accordion">
         <h3>Settings</h3>
         <div>

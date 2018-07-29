@@ -35,6 +35,25 @@ angular.module('nodeTodo', [])
       console.log('Error: ' + error);
     });
   };
+
+  $scope.Fruits = [{
+    Id: 1,
+    Name: 'Apple'
+}, {
+    Id: 2,
+    Name: 'Mango'
+}, {
+    Id: 3,
+    Name: 'Orange'
+}];
+
+$scope.GetValue = function () {
+    var fruitId = $scope.ddlFruits;
+    var fruitName = $.grep($scope.Fruits, function (fruit) {
+        return fruit.Id == fruitId;
+    })[0].Name;
+    $window.alert("Selected Value: " + fruitId + "\nSelected Text: " + fruitName);
+}
   // Delete a todo
   $scope.deleteTodo = (todoID) => {
     $http.delete('/api/v1/todos/' + todoID)
@@ -47,3 +66,4 @@ angular.module('nodeTodo', [])
     });
   };
 });
+

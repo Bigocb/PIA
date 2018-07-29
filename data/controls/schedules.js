@@ -1,0 +1,39 @@
+const express = require('express');
+var promise = require('bluebird');
+var request = require('request-promise')
+var pgp = require('pg-promise')(options);
+var connectionString = 'postgres://postgres:Lscooter11@localhost:5432/pia';
+var db = pgp(connectionString);
+
+var options = {
+  promiseLib: Promise
+};
+
+//Weather Polling
+setInterval(function() {   
+  var pref_type = 'autopoll_weather';
+  var pref_value = 'yes';
+  db.one('select preff_value from prefs  where pref_type = $1 and preff_value = $2', [pref_type,pref_value]
+).then(function (data) {
+  var qval = JSON.stringify(data);
+  console.log(qval.length);
+  if(qval) {
+    request("http://localhost:3000/test", function(error, response, body) {
+      console.log(body);
+    });
+    return "positive";
+    console.log('yes');
+  } else {
+    return "negative";
+    console.log('no');
+  }   
+  }).catch(function (err) {
+    return err;
+  });
+  
+  }, 600000);
+  
+//
+
+
+

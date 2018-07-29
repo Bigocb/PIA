@@ -4,7 +4,7 @@ const path = require('path');
 var request = require('request-promise');
 var db = require('../../data/queries');
 var inb = require('../../data/inbound');
-var inb2 = require('../../data/schedules');
+var inb2 = require('../../data/controls/schedules');
 
 // theae will provide rhe content for tbe elements
 
@@ -20,12 +20,5 @@ router.get('/', (req, res, next) => {
     __dirname, '..', '..', 'client', 'views', 'index.html'));
 });
 
-/*
-//TODO move to seperate files. and call function directly
-setInterval(function() {
-  request("http://localhost:3000/test", function(error, response, body) {
-  console.log(body);
-});
-}, 600000);*/
 
 module.exports = router;

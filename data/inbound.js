@@ -18,17 +18,13 @@ var requestsweather = [{
 function getWeather(req, res, next) {
 Promise.map(requestsweather, function(obj) {
   return request(obj).then(function(body) {
-    
-    return JSON.parse(body);
-    console.log(url);
+        return JSON.parse(body);
   });
 }).then(function(results) {
   for (var i = 0; i < results.length; i++) {
     insJson = results[i];
-    var url = req.url;
     var source = 'weather';
-    console.log(url);
-    db.none('insert into responses(response_data, response_key, category)' +
+     db.none('insert into responses(response_data, response_key, category)' +
     'values($1,extract(epoch from current_timestamp),$2)',
     [insJson,source])
   .then(function () {
