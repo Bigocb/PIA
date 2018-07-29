@@ -11,3 +11,26 @@ Possible data sources (phase one) pick two
   - traffic (location)
 
 - want to add slide out menu with buttons for manual and a toggle for auto polling (for each?)
+
+todo 
+
+1) finish toogle wiring. not firing fucntion in app.js client side
+
+2) add sources for 
+
+plex
+news
+heart rate info
+traffic
+
+3) add some business logic befoee walk through (may use db for speed)
+
+4) some frint end flash
+
+5) setup shared db connection
+
+6) refactor
+
+-------------------------------
+
+6) redis client for multiple calls
