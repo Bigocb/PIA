@@ -33,7 +33,7 @@ setInterval(function() {
   
   }, 600000);
 
-//TODO: change url to relative
+//TODO: change url to relative for local
  
 
   //news Polling

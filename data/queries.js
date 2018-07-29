@@ -6,7 +6,7 @@ var options = {
   // Initialization Options
   promiseLib: promise
 };
-
+//TODO: move to single db file for connections
 var pgp = require('pg-promise')(options);
 var connectionString = 'postgres://postgres:Lscooter11@localhost:5432/pia';
 //var connectionString = 'postgres://localhost:5432/pia';

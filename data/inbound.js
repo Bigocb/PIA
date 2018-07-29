@@ -83,15 +83,13 @@ function getNews(req, res, next) {
 function getMedia(req, res, next) {
   Promise.map(requestsmedia, function(obj) {
     return request(obj).then(function(body) {
-      parseString(body, function (err, result) {
-        var resp = JSON.stringify(result);
-        return JSON.parse(resp);
-        console.log('inner');
-        });
-        console.log('outer');
+      return parseString(body, function (err, result) {
+     console.dir(JSON.stringify(result));
+            });
+        console.log(result);
     });
   }).then(function(results) {
-    
+    console.log(results);
     for (var i = 0; i < results.length; i++) {
       insJson = results[i];
       var source = 'media';
