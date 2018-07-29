@@ -76,7 +76,8 @@ function getNews(req, res, next) {
       return next(err);
   });
   }
-
+  
+//TODO: write function for first part just to see if its working
 //TODO: Add logic to process Both json and xml
 //FIXME: Insert is happening but the parsed result is not being inserted
 function getMedia(req, res, next) {
