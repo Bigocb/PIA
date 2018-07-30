@@ -6,7 +6,7 @@ var db = require('../../database/connections');
 var options = {
   promiseLib: Promise
 };
-
+//TODO: Add schedules for Media and Events
 //Weather Polling
 setInterval(function() {   
   var pref_type = 'autopoll_weather';
