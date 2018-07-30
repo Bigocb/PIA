@@ -23,6 +23,19 @@ news
 heart rate info
 traffic
 
+Add:
+The Guardian - news
+Add Apple health data (outbound only)
+
+Sql queries in seperste file as variables ?
+
+The weather today was mostly ______ (count the days conditions and return the one with the most.
+
+The average temp was 
+
+It was really humid (give it a range)
+
+
 3) add some business logic befoee walk through (may use db for speed)
 
 4) some frint end flash
