@@ -23,7 +23,7 @@ var requestsnews = [{
 },
 ];
 
-//TODO: paramteraize location 
+//FIXME: paramteraize location 
 var requestsevents = [{
   url: 'https://www.eventbriteapi.com/v3/events/search/?location.address=charlotte',
   headers: {
@@ -50,7 +50,7 @@ Promise.map(requestsweather, function(obj) {
 }).then(function(results) {
   for (var i = 0; i < results.length; i++) {
     insJson = results[i];
-    var test = callurl;
+  //  var test = callurl;
        var source = 'weather';
      db.none('insert into responses(response_data, response_key, category)' +
     'values($1,extract(epoch from current_timestamp),$2)',

@@ -4,10 +4,12 @@ const path = require('path');
 var qu = require('../../data/queries');
 var inb = require('../../data/inbound');
 var sch = require('../../data/controls/schedules')
+var analysis = require('../../data/analysis/logic')
 
 // outbound data routes 
 router.get('/api/puppies', qu.getAllPuppies);
 router.get('/api/puppies/:id', qu.getSinglePuppy);
+router.get('/api/avgtemp', analysis.getAverageTemps);
 router.post('/api/puppies', qu.createPuppy);
 router.put('/api/puppies/:id', qu.updatePuppy);
 router.delete('/api/puppies/:id', qu.removePuppy);

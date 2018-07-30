@@ -14,17 +14,3 @@ function getNumbers(req, res, next) {
     });
 }
 
-
-a+b=c 
-
-0+1=1
-
-1+1=2
-
-2+1=3
-
-3+2=5 
-
-5+3=8
-
-8+5=13
