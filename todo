@@ -49,3 +49,9 @@ It was really humid (give it a range)
 //TODO: write function from interview
 
 6) redis client for multiple calls
+
+
+https://stackoverflow.com/questions/10221455/how-to-sum-json-array
+
+single function to retrieve values from array.
+https://stackoverflow.com/questions/19590865/from-an-array-of-objects-extract-value-of-a-property-as-array

@@ -9,7 +9,9 @@ var analysis = require('../../data/analysis/logic')
 // outbound data routes 
 router.get('/api/puppies', qu.getAllPuppies);
 router.get('/api/puppies/:id', qu.getSinglePuppy);
-router.get('/api/avgtemp', analysis.getAverageTemps);
+//router.get('/api/avgtemp', analysis.getAverageTemps);
+router.get('/api/avgtemp/:id', analysis.getAverageTemps);
+router.get('/api/avgcondition/:id', analysis.getAverageCondition);
 router.post('/api/puppies', qu.createPuppy);
 router.put('/api/puppies/:id', qu.updatePuppy);
 router.delete('/api/puppies/:id', qu.removePuppy);
