@@ -1,6 +1,5 @@
 var promise = require('bluebird');
 
-
 var options = {
   promiseLib: promise
 };

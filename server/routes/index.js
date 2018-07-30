@@ -16,6 +16,7 @@ router.delete('/api/puppies/:id', qu.removePuppy);
 router.get('/weather', inb.getWeather);
 router.get('/media', inb.getMedia);
 router.get('/news', inb.getNews);
+router.get('/events', inb.getEvents);
 
 
 // main route
