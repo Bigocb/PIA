@@ -9,6 +9,7 @@
     "angular-bootstrap-toggle": "^0.1.2",
     "angular-datatables": "^6.0.0",
     "angular-ui-switch": "^0.1.1",
+    "angularjs-datepicker": "^2.1.23",
     "blubird": "0.0.1-security",
     "bluebird": "^3.5.1",
     "body-parser": "~1.15.1",

@@ -50,6 +50,21 @@ function updatePuppy(req, res, next) {
 }
 
 
+function getData(req, res, next) {
+  db.any('select to_timestamp(response_key) as timestamp ,response_data as data,source,category from responses order by response_key desc')
+    .then(function (data) {
+      res.status(200)
+        .json({
+                data: data,
+               });
+        console.log(data);
+    })
+    .catch(function (err) {
+      return next(err);
+    });
+}
+
 module.exports = {
   getAllWeather: getAllWeather,
+  getData: getData
 };

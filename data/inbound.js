@@ -39,22 +39,24 @@ var requestsweather = [{
 
 //TODO: Pass url out of requst so we can use it to store and analyze in the DB.
 function getWeather(req, res, next) {
+  var src = [];
 Promise.map(requestsweather, function(obj) {
   return request(obj).then(function(body) {
-    console.log(obj.url);
-
+    
+    src.push(obj.url);
         return JSON.parse(body);
-   
+       
         });
         
 }).then(function(results) {
   for (var i = 0; i < results.length; i++) {
     insJson = results[i];
   //  var test = callurl;
+  console.log(src);
        var source = 'weather';
-     db.none('insert into responses(response_data, response_key, category)' +
-    'values($1,extract(epoch from current_timestamp),$2)',
-    [insJson,source])
+     db.none('insert into responses(response_data, response_key, category,source)' +
+    'values($1,extract(epoch from current_timestamp),$2,$3)',
+    [insJson,source,src])
   .then(function () {
     res.status(200)
       .json({

@@ -41,14 +41,13 @@
           var table = $('#example').DataTable( {
             "processing": true,
                     "ajax": {
-          "url": "http://localhost:3000/api/weather",
+          "url": "http://localhost:3000/data",
          },
          "columns": [
-                  { "data": "state" },
-                  { "data": "city" },
-                  { "data": "zip" },
-                  { "data": "observation_time" },
-                  { "data": "temp_f" }
+                  { "data": "timestamp" },
+                  { "data": "data" },
+                  { "data": "source" },
+                  { "data": "category" }
                         ]
           } );
           setInterval( function () {
@@ -75,7 +74,7 @@
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav navbar-right">
-            <li><a href="#">Dashboard</a></li>
+            <li><a href="/admin">Dashboard</a></li>
             <li><a href="#">Settings</a></li>
             <li><a href="#">Profile</a></li>
             <li><a href="#">Help</a></li>
@@ -149,23 +148,12 @@
                 <table id="example" class="display" style="width:100%">
                         <thead>
                             <tr>
-                                <th>State</th>
-                                <th>City</th>
-                                <th>Zip</th>
                                 <th>Time</th>
-                                <th>Temp</th>
-                  
+                                <th>Data</th>
+                                <th>Source</th>
+                                <th>Group</th>
                             </tr>
                         </thead>
-                        <tfoot>
-                            <tr>
-                              <th>State</th>
-                              <th>City</th>
-                              <th>Zip</th>
-                              <th>Time</th>
-                              <th>Temp</th>
-                            </tr>
-                        </tfoot>
                     </table>            
           </div>
         </div>

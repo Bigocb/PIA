@@ -3,7 +3,7 @@ angular.module('nodeTodo', [])
   $scope.formData = {};
   $scope.todoData = {};
   // Get all todos
-  $http.get('/api/avgtemp/2018-07-30')
+  $http.get('/api/avgtemp/2018-07-31')
   .success((data) => {
     $scope.todoData = data;
     console.log(data);
@@ -49,6 +49,17 @@ angular.module('nodeTodo', [])
       });
     };
 
+    $scope.getAvgCond = () => {
+      $http.get('/api/avgtemp/2018-07-31', $scope.formData)
+      .success((data) => {
+      $scope.todoData = data;
+        console.log(data);
+      })
+      .error((error) => {
+        console.log('Error: ' + error);
+      });
+    };
+
   $scope.Fruits = [{
     Id: 1,
     Name: 'Apple'
@@ -67,6 +78,19 @@ $scope.GetValue = function () {
     })[0].Name;
     $window.alert("Selected Value: " + fruitId + "\nSelected Text: " + fruitName);
 }
+
+$scope.$watch('myDate', function (value) {
+  try {
+   liveDate = new Date(value);
+  } catch(e) {}
+
+  if (!liveDate) {
+
+    $scope.error = "This is not a valid date";
+  } else {
+    $scope.error = false;
+  }
+});
   // Delete a todo
   $scope.deleteTodo = (todoID) => {
     $http.delete('/api/v1/todos/' + todoID)
@@ -78,5 +102,40 @@ $scope.GetValue = function () {
       console.log('Error: ' + data);
     });
   };
-});
+})
+
+.controller('ctl', ($scope, $http) => {
+  $http.get('/api/avgcondition/2018-07-31')
+  .success((data) => {
+    $scope.todoData = data;
+    console.log(data);
+  })
+  .error((error) => {
+    console.log('Error: ' + error);
+  });
+})
+
+.controller('humidity', ($scope, $http) => {
+  $http.get('/api/avghumidity/2018-07-31')
+  .success((data) => {
+    $scope.todoData = data;
+    console.log(data);
+  })
+  .error((error) => {
+    console.log('Error: ' + error);
+  });
+})
+
+.controller('news', ($scope, $http) => {
+  $http.get('/api/topnews/2018-07-31')
+  .success((data) => {
+    $scope.todoData = data;
+    console.log(data);
+  })
+  .error((error) => {
+    console.log('Error: ' + error);
+  });
+})
+
+
 

@@ -112,7 +112,6 @@ function getAverageHumidity(req, res, next) {
       }
      res.status(200)
      .json({
-      avg,
         data:  feel
             });
     })
@@ -123,11 +122,14 @@ function getAverageHumidity(req, res, next) {
 
 
 //TODO: pull top 5 headlines and not top 1
+//TODO: Add source with HTML
 function getTopNews(req, res, next) {
   var day = req.params.id;
   var cat = 'news';
   var section = 'articles';
   var key = 'title';
+  var h2s = '<h2>'
+  var h2e = '</h2>'
   var dateFormat = 'yyyy-mm-dd';
   db.any('select '+
   'b ->> $3 as title'+

@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html ng-app="nodeTodo"> 
+  <head>
+    <title>Todo App - with Node + Express + Angular + PostgreSQL</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" media="screen">
+    <link rel="stylesheet" href="/stylesheets/style.css" media="screen">
+  	<link rel="shortcut icon" type="image/png" href="/media/images/favicon.png">
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link rel="alternate" type="application/rss+xml" title="RSS 2.0" href="http://www.datatables.net/rss.xml">
+	<link rel="stylesheet" type="text/css" href="/media/css/site-examples.css?_=19472395a2969da78c8a4c707e72123a">
+  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
+  <link rel="stylesheet" href="../../node_modules/angular-ui-switch/angular-ui-switch.min.css"/>
+  <link href="https://gitcdn.github.io/angular-bootstrap-toggle/{version}/dist/angular-bootstrap-toggle.min.css" rel="stylesheet">
+<script src="https://gitcdn.github.io/bootstrap-toggle/{version}/dist/angular-bootstrap-toggle.min.js"></script>
+
+  <style>
+      .toggler {
+        width: 500px;
+        height: 200px;
+      }
+      #button {
+        padding: .5em 1em;
+        text-decoration: none;
+      }
+      #effect {
+        position: relative;
+        width: 240px;
+        height: 170px;
+        padding: 0.4em;
+      }
+      #effect h3 {
+        margin: 0;
+        padding: 0.4em;
+        text-align: center;
+      }
+      </style>
+	<script type="text/javascript" language="javascript" src="https://code.jquery.com/jquery-3.3.1.js"></script>
+	<script type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+ <script>
+  $( function() {
+    $( "#accordion" ).accordion({
+      collapsible: true,
+      heightStyle: "content"
+    });
+  } );
+  </script>
+  <script>
+    $( function() {
+      $( "#tabs" ).tabs();
+    } );
+    </script>
+  <script type="text/javascript">
+	
+  $(document).ready(function() {
+    var table = $('#example').DataTable( {
+      "processing": true,
+              "ajax": {
+    "url": "http://localhost:3000/api/weather",
+   },
+   "columns": [
+            { "data": "state" },
+            { "data": "city" },
+            { "data": "zip" },
+            { "data": "observation_time" },
+            { "data": "temp_f" }
+                  ]
+    } );
+    setInterval( function () {
+    table.ajax.reload( null, false ); // user paging is not reset on reload
+}, 300000 );
+} );
+
+
+  </script>
+
+
+  </head>
+  <body >
+  <script src="../../node_modules/angular-ui-switch/angular-ui-switch.min.js"></script>
+    <div ng-controller="mainController" class="container">
+ 
+      <div id="tabs">
+        <ul>
+          <li><a href="#tabs-1">Data Status</a></li>
+          <li><a href="#tabs-2">Settings</a></li>
+          <li><a href="#tabs-3">Automated Journal</a></li>
+        </ul>
+        <div id="tabs-1">
+          <table id="example" class="display" style="width:100%">
+            <thead>
+                <tr>
+                    <th>State</th>
+                    <th>City</th>
+                    <th>Zip</th>
+                    <th>Time</th>
+                    <th>Temp</th>
+      
+                </tr>
+            </thead>
+            <tfoot>
+                <tr>
+                  <th>State</th>
+                  <th>City</th>
+                  <th>Zip</th>
+                  <th>Time</th>
+                  <th>Temp</th>
+                </tr>
+            </tfoot>
+        </table>
+        </div>
+        <div id="tabs-2">
+            <div>
+                <select ng-model="ddlFruits" ng-options="fruit.Id as fruit.Name for fruit in Fruits">
+                </select>
+                <br />
+                <br />
+                <input type="button" value = "Get" ng-click = "GetValue()" />
+            </div>
+          <form>
+             
+            <input type="text" class="form-control input-lg" placeholder="Enter text..." ng-model="formData.text">
+          
+          <button type="submit" class="btn btn-primary btn-lg btn-block" ng-click="createTodo()">Adjust Zip</button>
+        </form>
+        <button type="submit" class="btn btn-primary btn-lg btn-block" ng-click="getWeather()">Refresh Weather</button>
+      
+        </div>
+        <div id="tabs-3">
+
+        </div>
+  </div>
+        </div>
+
+        
+    <script src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.6/angular.min.js"></script>
+    <script src="../javascripts/app.js"></script>
+  </body>
+</html>

@@ -8,7 +8,7 @@ var analysis = require('../../data/analysis/logic')
 
 
 router.get('/api/weather', qu.getAllWeather);
-
+router.get('/data', qu.getData);
 // Analytic Logic
 router.get('/api/avgtemp/:id', analysis.getAverageTemps);
 router.get('/api/avgcondition/:id', analysis.getAverageCondition);
