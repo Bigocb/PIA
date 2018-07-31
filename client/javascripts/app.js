@@ -3,7 +3,7 @@ angular.module('nodeTodo', [])
   $scope.formData = {};
   $scope.todoData = {};
   // Get all todos
-  $http.get('/api/puppies')
+  $http.get('/api/avgtemp/2018-07-30')
   .success((data) => {
     $scope.todoData = data;
     console.log(data);
@@ -25,7 +25,7 @@ angular.module('nodeTodo', [])
   };
   // Maually Refresh Weather
   $scope.getWeather = () => {
-    $http.get('/test', $scope.formData)
+    $http.get('/weather', $scope.formData)
     .success((data) => {
       $scope.formData = {};
       $scope.todoData = data;
@@ -35,6 +35,19 @@ angular.module('nodeTodo', [])
       console.log('Error: ' + error);
     });
   };
+
+    // Maually Refresh Weather
+    $scope.getAvgTemp = () => {
+      $http.get('/weather', $scope.formData)
+      .success((data) => {
+        $scope.formData = {};
+        $scope.todoData = data;
+        console.log(data);
+      })
+      .error((error) => {
+        console.log('Error: ' + error);
+      });
+    };
 
   $scope.Fruits = [{
     Id: 1,

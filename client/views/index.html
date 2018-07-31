@@ -13,7 +13,7 @@
   <link rel="stylesheet" href="../../node_modules/angular-ui-switch/angular-ui-switch.min.css"/>
   <link href="https://gitcdn.github.io/angular-bootstrap-toggle/{version}/dist/angular-bootstrap-toggle.min.css" rel="stylesheet">
 <script src="https://gitcdn.github.io/bootstrap-toggle/{version}/dist/angular-bootstrap-toggle.min.js"></script>
-  
+
   <style>
       .toggler {
         width: 500px;
@@ -46,13 +46,18 @@
     });
   } );
   </script>
+  <script>
+    $( function() {
+      $( "#tabs" ).tabs();
+    } );
+    </script>
   <script type="text/javascript">
 	
   $(document).ready(function() {
     var table = $('#example').DataTable( {
       "processing": true,
               "ajax": {
-    "url": "http://localhost:3000/api/puppies",
+    "url": "http://localhost:3000/api/weather",
    },
    "columns": [
             { "data": "state" },
@@ -75,53 +80,61 @@
   <body >
   <script src="../../node_modules/angular-ui-switch/angular-ui-switch.min.js"></script>
     <div ng-controller="mainController" class="container">
-        <div>
-            <select ng-model="ddlFruits" ng-options="fruit.Id as fruit.Name for fruit in Fruits">
-            </select>
-            <br />
-            <br />
-            <input type="button" value = "Get" ng-click = "GetValue()" />
+ 
+      <div id="tabs">
+        <ul>
+          <li><a href="#tabs-1">Data Status</a></li>
+          <li><a href="#tabs-2">Settings</a></li>
+          <li><a href="#tabs-3">Automated Journal</a></li>
+        </ul>
+        <div id="tabs-1">
+          <table id="example" class="display" style="width:100%">
+            <thead>
+                <tr>
+                    <th>State</th>
+                    <th>City</th>
+                    <th>Zip</th>
+                    <th>Time</th>
+                    <th>Temp</th>
+      
+                </tr>
+            </thead>
+            <tfoot>
+                <tr>
+                  <th>State</th>
+                  <th>City</th>
+                  <th>Zip</th>
+                  <th>Time</th>
+                  <th>Temp</th>
+                </tr>
+            </tfoot>
+        </table>
         </div>
-        <div class="todo_list" id="accordion">
-        <h3>Settings</h3>
-        <div>
-                  <form>
-               
-                  <input type="text" class="form-control input-lg" placeholder="Enter text..." ng-model="formData.text">
-                
-                <button type="submit" class="btn btn-primary btn-lg btn-block" ng-click="createTodo()">Adjust Zip</button>
-              </form>
-              <button type="submit" class="btn btn-primary btn-lg btn-block" ng-click="getWeather()">Refresh Weather</button>
-            
-        </div>
-        <h3>Weather</h3>
-        <div class="dstream">
-            <table id="example" class="display" style="width:100%">
-                <thead>
-                    <tr>
-                        <th>State</th>
-                        <th>City</th>
-                        <th>Zip</th>
-                        <th>Time</th>
-                        <th>Temp</th>
+        <div id="tabs-2">
+            <div>
+                <select ng-model="ddlFruits" ng-options="fruit.Id as fruit.Name for fruit in Fruits">
+                </select>
+                <br />
+                <br />
+                <input type="button" value = "Get" ng-click = "GetValue()" />
+            </div>
+          <form>
+             
+            <input type="text" class="form-control input-lg" placeholder="Enter text..." ng-model="formData.text">
           
-                    </tr>
-                </thead>
-                <tfoot>
-                    <tr>
-                      <th>State</th>
-                      <th>City</th>
-                      <th>Zip</th>
-                      <th>Time</th>
-                      <th>Temp</th>
-                    </tr>
-                </tfoot>
-            </table>
-          </div>
-      </div>
-     
+          <button type="submit" class="btn btn-primary btn-lg btn-block" ng-click="createTodo()">Adjust Zip</button>
+        </form>
+        <button type="submit" class="btn btn-primary btn-lg btn-block" ng-click="getWeather()">Refresh Weather</button>
+      
         </div>
+        <div id="tabs-3">
+
+        </div>
+  </div>
+        </div>
+
+        
     <script src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.6/angular.min.js"></script>
-    <script src="javascripts/app.js"></script>
+    <script src="../javascripts/app.js"></script>
   </body>
 </html>
