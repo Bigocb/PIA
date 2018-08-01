@@ -33,11 +33,13 @@ function getAllWeather(req, res, next) {
 }
 
 // TODO: refactor function to serve all polling updates
-function updatePuppy(req, res, next) {
-  db.none('update pups set name=$1, breed=$2, age=$3, sex=$4 where id=$5',
-    [req.body.name, req.body.breed, parseInt(req.body.age),
-      req.body.sex, parseInt(req.params.id)])
+function updatePrefs(req, res, next) {
+  var type ='default_zip'
+  const id = req.params.name;
+  db.any('update prefs set preff_value=$1 where pref_type=$2',
+    [id,type])
     .then(function () {
+      console.log('test');
       res.status(200)
         .json({
           status: 'success',
@@ -45,13 +47,66 @@ function updatePuppy(req, res, next) {
         });
     })
     .catch(function (err) {
+      console.log('fail');
+      return next(err);
+    });
+}
+
+// TODO: refactor function to serve all polling updates
+function updateDate(req, res, next) {
+  var type ='date'
+  const id = req.params.date;
+  db.any('update prefs set preff_value=$1 where pref_type=$2',
+    [id,type])
+    .then(function () {
+      console.log('test');
+      res.status(200)
+        .json({
+          status: 'success',
+          message: 'Updated puppy'
+        });
+    })
+    .catch(function (err) {
+      console.log('fail');
+      return next(err);
+    });
+}
+
+// TODO: change query to return nicer date
+function getData(req, res, next) {
+  var hour = '4 hours';
+  db.any('select to_timestamp(response_key) - (interval $1)  as timestamp ,response_data as data,source,category from responses order by response_key desc',hour)
+    .then(function (data) {
+      res.status(200)
+        .json({
+                data: data,
+               });
+        console.log(data);
+    })
+    .catch(function (err) {
+      return next(err);
+    });
+}
+
+function getDataCount(req, res, next) {
+  var hour = 'yyyy-mm-dd';
+  db.any('select to_char(to_timestamp(a.response_key),$1),count(*) from responses a group by to_char(to_timestamp(a.response_key),$1) order by 1 desc',hour)
+    .then(function (data) {
+      res.status(200)
+        .json({
+                data: data,
+               });
+        console.log(data);
+    })
+    .catch(function (err) {
       return next(err);
     });
 }
 
 
-function getData(req, res, next) {
-  db.any('select to_timestamp(response_key) as timestamp ,response_data as data,source,category from responses order by response_key desc')
+function getCurrDate(req, res, next) {
+  var key = 'date';
+  db.any('select preff_value from prefs where pref_type = $1',key)
     .then(function (data) {
       res.status(200)
         .json({
@@ -66,5 +121,9 @@ function getData(req, res, next) {
 
 module.exports = {
   getAllWeather: getAllWeather,
-  getData: getData
+  getData: getData,
+  updatePrefs: updatePrefs,
+  updateDate: updateDate,
+  getCurrDate: getCurrDate,
+  getDataCount: getDataCount
 };

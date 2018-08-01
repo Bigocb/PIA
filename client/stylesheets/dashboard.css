@@ -25,6 +25,11 @@ body {
   border: 0;
 }
 
+.headline {
+  margin-left: 70px;
+  margin-top: 30px;
+}
+
 /*
  * Sidebar
  */
@@ -63,7 +68,11 @@ body {
 .nav-sidebar > .active > a:hover,
 .nav-sidebar > .active > a:focus {
   color: #fff;
-  background-color: #428bca;
+  background-color: #008B95;
+}
+
+.box {
+  margin-top: 5px;
 }
 
 
@@ -84,6 +93,13 @@ body {
   margin-top: 0;
 }
 
+.menuButtons {
+  background-color: #66B9BF;
+  margin-top: 5px;
+  min-width: 200px;
+  border: none;
+  color: white;
+}
 
 /*
  * Placeholder dashboard ideas
@@ -91,7 +107,7 @@ body {
 
 .placeholders {
   margin-bottom: 30px;
-  margin-left: 50px;
+  margin-left: 10px;
   text-align: center;
 }
 .placeholders h4 {

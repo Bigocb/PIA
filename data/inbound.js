@@ -1,13 +1,9 @@
 var Promise = require("bluebird");
 const express = require('express');
 var request = require('request-promise');
-const router = express.Router();
 var db = require('../database/connections');
 var parseString = require('xml2js').parseString;
 
-var options = {
-  promiseLib: Promise
-};
 //TODO: read these in from a variables file
 var requestsmedia = [
   {
@@ -51,8 +47,7 @@ Promise.map(requestsweather, function(obj) {
 }).then(function(results) {
   for (var i = 0; i < results.length; i++) {
     insJson = results[i];
-  //  var test = callurl;
-  console.log(src);
+   console.log(src);
        var source = 'weather';
      db.none('insert into responses(response_data, response_key, category,source)' +
     'values($1,extract(epoch from current_timestamp),$2,$3)',
@@ -73,17 +68,19 @@ Promise.map(requestsweather, function(obj) {
 }
 
 function getNews(req, res, next) {
+  var src = [];
   Promise.map(requestsnews, function(obj) {
     return request(obj).then(function(body) {
+      src.push(obj.url);
           return JSON.parse(body);
     });
   }).then(function(results) {
     for (var i = 0; i < results.length; i++) {
       insJson = results[i];
       var source = 'news';
-       db.none('insert into responses(response_data, response_key, category)' +
-      'values($1,extract(epoch from current_timestamp),$2)',
-      [insJson,source])
+       db.none('insert into responses(response_data, response_key, category,source)' +
+      'values($1,extract(epoch from current_timestamp),$2,$3)',
+      [insJson,source,src])
     .then(function () {
       res.status(200)
         .json({
@@ -100,18 +97,19 @@ function getNews(req, res, next) {
   }
 
   function getEvents(req, res, next) {
+    var src = [];
     Promise.map(requestsevents, function(obj) {
       return request(obj).then(function(body) {
+        src.push(obj.url);
             return JSON.parse(body);
       });
     }).then(function(results) {
       for (var i = 0; i < results.length; i++) {
         insJson = results[i];
-        console.log(req);
-        var source = 'events';
-         db.none('insert into responses(response_data, response_key, category)' +
-        'values($1,extract(epoch from current_timestamp),$2)',
-        [insJson,source])
+         var source = 'events';
+         db.none('insert into responses(response_data, response_key, category,source)' +
+        'values($1,extract(epoch from current_timestamp),$2,$3)',
+        [insJson,source,src])
       .then(function () {
         res.status(200)
           .json({
@@ -130,9 +128,11 @@ function getNews(req, res, next) {
 //TODO: Add logic to process Both json and xml
 //FIXME: Insert is happening but the parsed result is not being inserted
 function getMedia(req, res, next) {
+  var src = [];
   Promise.map(requestsmedia, function(obj) {
     return request(obj).then(function(body) {
       return parseString(body, function (err, result) {
+        src.push(obj.url);
          console.dir(JSON.stringify(result));
               });
         });
@@ -141,9 +141,9 @@ function getMedia(req, res, next) {
     for (var i = 0; i < result.length; i++) {
       insJson = result[i];
       var source = 'media';
-       db.none('insert into responses(response_data, response_key, category)' +
-      'values($1,extract(epoch from current_timestamp),$2)',
-      [insJson,source])
+       db.none('insert into responses(response_data, response_key, category,source)' +
+      'values($1,extract(epoch from current_timestamp),$2,$3)',
+      [insJson,source,src])
     .then(function () {
       res.status(200)
         .json({
@@ -151,8 +151,7 @@ function getMedia(req, res, next) {
           message: 'Inserted one puppy',
           data: insJson
         });
-     //   console.log(insJson);
-    })
+        })
     }
   }, function(err) {
       return next(err);

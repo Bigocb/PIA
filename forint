@@ -1,6 +1,11 @@
-More analysis feeds 
-Front end tabs 
-Data Dashboard
-Testing 
+add apple health
+Testing
+logging 
 Refactor and clean 
+ - GLOBAL VARIABLES FILE
+ - DB Config and hash password
+ - rename queries.js and move to util folder
+ - fix dropdown
+ - add graph
+ - health data
 

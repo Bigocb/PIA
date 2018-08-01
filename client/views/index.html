@@ -89,7 +89,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="#">Project name</a>
+          <a class="navbar-brand" href="/">Project name</a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav navbar-right">
@@ -105,22 +105,36 @@
       </div>
     </nav>
 
-    <div ng-controller="mainController" class="container-fluid">
+    <div  class="container-fluid">
       <div class="row">
+         
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-          <h1 class="page-header">Today's Numbers</h1>
-          <datepicker
-          date-format="MMMM d, y"
-          button-prev='<i class="fa fa-arrow-circle-left"></i>'
-          button-next='<i class="fa fa-arrow-circle-right"></i>'>
-          <input ng-model="date1" type="text" class="font-fontawesome font-light radius3" placeholder="&#xf073; Choose a date"/>
-        </datepicker>
+            <div ng-controller="date">
+                <div ng-repeat="todo in todoData.data" class="peek">
+                 
+                    <h1 class="page-header">Data for {{todo.preff_value}} </h1>
+            </div>
+
+            <!-- TODO: remove windows.reload and use model to reload objects-->
+             <div ng-controller="mainController">
+          <form>                       
+                <select name="cars" ng-model="date" ng-change="updDate()"> 
+                    <option value="2018-08-02">2018-08-02</option>
+                    <option value="2018-08-01">2018-08-01</option>
+              <option value="2018-07-31">2018-07-31</option>
+              <option value="2018-07-30">2018-07-30</option>
+              <option value="2018-07-29">2018-07-29</option>
+              <option value="2018-07-28">2018-07-28</option>
+              <option value="2018-07-27">2018-07-27</option>
+            </select>
+              
+              <button type="submit" class="menuButtons" onclick="window.location.reload()" ng-click="updDate()">Date...</button>
+            </form>
+          </div>
+         
+
         <h2 class="sub-header">Weather</h2>
           <div class="row placeholders">
-            <div class="col-xs-6 col-sm-3 placeholder4">
-              <h4>Label</h4>
-              <span class="text-muted">Something else</span>
-            </div>
             <div ng-controller="humidity"  class="col-xs-6 col-sm-3 placeholder3">
                 <div ng-repeat="todo in todoData" class="peek">
                     <h2>{{todo}}</h2>
@@ -128,31 +142,43 @@
               <h4>Humidity</h4>
               <span class="text-muted">Charlotte, NC</span>
             </div>
-            <div ng-controller="ctl" ng-repeat="todo in todoData" class="col-xs-6 col-sm-3 placeholder2">
+            <div ng-controller="ctl"class="col-xs-6 col-sm-3 placeholder2">
                 <div ng-repeat="todo in todoData" class="peek">
                     <h2>{{todo}}</h2>
             </div>
               <h4>Weather Condition</h4>
               <span class="text-muted">Charlotte, NC</span>
             </div>
-            <div  class="col-xs-6 col-sm-3 placeholder1">
+            <div ng-controller="temp" class="col-xs-6 col-sm-3 placeholder1">
                     <div ng-repeat="todo in todoData" class="peek">
                             <h1>{{todo}}</h1>
                     </div>
               <h4>Average Temp</h4>
               <span class="text-muted">Charlotte, NC</span>
             </div>
+            
+            <div ng-controller="news" class="col-xs-6 col-sm-3 headline">
+                <div ng-repeat="todo in todoData" class="peek">
+                    <h2>{{todo}}</h2>
+                    <h4>Top Headline</h4>
+            </div>
           </div>
+        </div>
 
-          <h2 class="sub-header">News</h2>
+          <h2 class="sub-header">Events</h2>
          
-          <div class="table-responsive">
-              <h4>Top Headline</h4>
-              <div ng-controller="news" ng-repeat="todo in todoData" class="col-xs-6 col-sm-3">
-                  <div ng-repeat="todo in todoData" class="peek">
-                      <h2>{{todo}}</h2>
-              </div>
+          <div ng-controller="events"  class="table-responsive">
+              <table>
+                  <th>Event</th>
+                  <th>date</th>
+                  <tr ng-repeat="todo in todoData.data">
+                    <td>{{ todo.event_name }}</td>
+                    <td>{{ todo.date }}</td>
+                  </tr>
+                </table>
+    
           </div>
+         
         </div>
       </div>
     </div>

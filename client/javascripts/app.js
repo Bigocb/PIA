@@ -2,7 +2,7 @@ angular.module('nodeTodo', [])
 .controller('mainController', ($scope, $http) => {
   $scope.formData = {};
   $scope.todoData = {};
-  // Get all todos
+  // Get all temps
   $http.get('/api/avgtemp/2018-07-31')
   .success((data) => {
     $scope.todoData = data;
@@ -13,7 +13,7 @@ angular.module('nodeTodo', [])
   });
   // Create a new todo
   $scope.createTodo = () => {
-    $http.post('/api/v1/todos', $scope.formData)
+    $http.get('/api/updparam/', $scope.myText)
     .success((data) => {
       $scope.formData = {};
       $scope.todoData = data;
@@ -60,6 +60,29 @@ angular.module('nodeTodo', [])
       });
     };
 
+    $scope.updDate = () => {
+      $http.get('/api/date/' + $scope.date)
+      .success((data) => {
+      $scope.todoData = data;
+        console.log(data);
+      })
+      .error((error) => {
+        console.log('Error: ' + error);
+      });
+    };
+    
+
+    $scope.updParam = () => {
+      $http.get('/api/updparam/' + $scope.name)
+      .success((data) => {
+      $scope.todoData = data;
+        console.log(data);
+      })
+      .error((error) => {
+        console.log('Error: ' + error);
+      });
+    };
+
   $scope.Fruits = [{
     Id: 1,
     Name: 'Apple'
@@ -92,8 +115,8 @@ $scope.$watch('myDate', function (value) {
   }
 });
   // Delete a todo
-  $scope.deleteTodo = (todoID) => {
-    $http.delete('/api/v1/todos/' + todoID)
+  $scope.deleteTodo = (name) => {
+    $http.delete('/api/updparam/' + name)
     .success((data) => {
       $scope.todoData = data;
       console.log(data);
@@ -105,7 +128,7 @@ $scope.$watch('myDate', function (value) {
 })
 
 .controller('ctl', ($scope, $http) => {
-  $http.get('/api/avgcondition/2018-07-31')
+  $http.get('/api/avgcondition/')
   .success((data) => {
     $scope.todoData = data;
     console.log(data);
@@ -116,7 +139,7 @@ $scope.$watch('myDate', function (value) {
 })
 
 .controller('humidity', ($scope, $http) => {
-  $http.get('/api/avghumidity/2018-07-31')
+  $http.get('/api/avghumidity/')
   .success((data) => {
     $scope.todoData = data;
     console.log(data);
@@ -127,7 +150,18 @@ $scope.$watch('myDate', function (value) {
 })
 
 .controller('news', ($scope, $http) => {
-  $http.get('/api/topnews/2018-07-31')
+  $http.get('/api/topnews/')
+  .success((data) => {
+    $scope.todoData = data;
+    console.log(data);
+  })
+  .error((error) => {
+    console.log('Error: ' + error);
+  });
+})
+
+.controller('datacnt', ($scope, $http) => {
+  $http.get('/api/topnews/')
   .success((data) => {
     $scope.todoData = data;
     console.log(data);
@@ -138,4 +172,35 @@ $scope.$watch('myDate', function (value) {
 })
 
 
+.controller('date', ($scope, $http) => {
+  $http.get('/api/curdate')
+  .success((data) => {
+    $scope.todoData = data;
+    console.log(data);
+  })
+  .error((error) => {
+    console.log('Error: ' + error);
+  });
+})
 
+.controller('temp', ($scope, $http) => {
+  $http.get('/api/avgtemp')
+  .success((data) => {
+    $scope.todoData = data;
+    console.log(data);
+  })
+  .error((error) => {
+    console.log('Error: ' + error);
+  });
+})
+
+.controller('events', ($scope, $http) => {
+  $http.get('/api/events')
+  .success((data) => {
+    $scope.todoData = data;
+    console.log(data);
+  })
+  .error((error) => {
+    console.log('Error: ' + error);
+  });
+})

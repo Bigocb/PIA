@@ -1,8 +1,11 @@
 var promise = require('bluebird');
+const monitor = require('pg-monitor');
 
 var options = {
   promiseLib: promise
 };
+
+monitor.attach(options); 
 
 // local postgres connection
 var pgp = require('pg-promise')(options);

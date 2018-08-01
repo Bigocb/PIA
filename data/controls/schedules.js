@@ -1,11 +1,6 @@
-const express = require('express');
-var promise = require('bluebird');
 var request = require('request-promise')
 var db = require('../../database/connections');
 
-var options = {
-  promiseLib: Promise
-};
 //TODO: Add schedules for Media and Events
 //Weather Polling
 setInterval(function() {   

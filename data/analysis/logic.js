@@ -3,14 +3,14 @@ var promise = require('bluebird');
 var db = require('../../database/connections');
 
 function getAverageTemps(req, res, next) {
-  var day = req.params.id;
+  var day = 'date';
   var cat = 'weather';
   var node = 'current_observation';
   var tmp = 'temp_f';
   var dateFormat = 'yyyy-mm-dd';
   db.any('select '+
   '((response_data -> $2)->>$3) as temp_f'+
-    ' from responses where category = $1 and to_char(to_timestamp(response_key),$5) = $4',[cat,node,tmp,day,dateFormat])
+    ' from responses, prefs  where category = $1 and to_char(to_timestamp(response_key),$5) = preff_value and pref_type = $4',[cat,node,tmp,day,dateFormat])
     .then(function (data) {
       var tar = [];
       for (var i=0;i<data.length;i++) {
@@ -36,13 +36,13 @@ console.log(tar);
 };
 
 function getAverageCondition(req, res, next) {
-  var day = req.params.id;
+  var day = 'date'
   var cat = 'weather';
   var node = 'current_observation';
   var dateFormat = 'yyyy-mm-dd';
   db.any('select '+
   '((response_data -> $2)->>$1) as weather'+
-    ' from responses where category = $1 and to_char(to_timestamp(response_key),$4) = $3',[cat,node,day,dateFormat])
+    ' from responses, prefs where category = $1 and to_char(to_timestamp(response_key),$4) = preff_value and pref_type = $3',[cat,node,day,dateFormat])
     .then(function (data) {
       var tar = [];
       for (var i=0;i<data.length;i++) {
@@ -74,7 +74,7 @@ for(var v in tar){
 };
 
 function getAverageHumidity(req, res, next) {
-  var day = req.params.id;
+  var day = 'date';
   var cat = 'weather';
   var section = 'current_observation';
   var key = 'dewpoint_f';
@@ -82,7 +82,7 @@ function getAverageHumidity(req, res, next) {
  var trimf = '%';
   db.any('select '+
   'trim($6 from ((response_data -> $2)->>$3))::int as humidity'+
-    ' from responses where category = $1 and to_char(to_timestamp(response_key),$5) = $4',[cat,section,key,day,dateFormat,trimf])
+    ' from responses, prefs  where category = $1 and to_char(to_timestamp(response_key),$5) = preff_value and pref_type = $4 ',[cat,section,key,day,dateFormat,trimf])
     .then(function (data) { //build array of dew_point readings
       var tar = [];
       for (var i=0;i<data.length;i++) {
@@ -122,9 +122,9 @@ function getAverageHumidity(req, res, next) {
 
 
 //TODO: pull top 5 headlines and not top 1
-//TODO: Add source with HTML
+//TODO: Add source with HTML Tags
 function getTopNews(req, res, next) {
-  var day = req.params.id;
+  var day = 'date';
   var cat = 'news';
   var section = 'articles';
   var key = 'title';
@@ -133,8 +133,8 @@ function getTopNews(req, res, next) {
   var dateFormat = 'yyyy-mm-dd';
   db.any('select '+
   'b ->> $3 as title'+
-    ' from responses a join lateral jsonb_array_elements(response_data -> $2) b on true' +
-    ' where category = $1 and to_char(to_timestamp(response_key),$5) = $4',[cat,section,key,day,dateFormat])
+    ' from responses a  join lateral jsonb_array_elements(response_data -> $2) b on true join prefs on to_char(to_timestamp(a.response_key),$5) = preff_value ' +
+    ' where category = $1 and to_char(to_timestamp(response_key),$5) = preff_value and pref_type = $4',[cat,section,key,day,dateFormat])
     .then(function (data) {
       var tar = [];
       for (var i=0;i<data.length;i++) {
@@ -165,9 +165,39 @@ console.log(freq);
     });
 };
 
+
+function getTopEvents(req, res, next) {
+   var events = 'events';
+  var name = 'name';
+  var text = 'text';
+  var start = 'start'
+  var local = 'local'
+  var dateFormat = 'yyyy-mm-dd';
+  var start_date = '2018-07-31';
+  var end_date = '2018-08-14';
+  db.any('select distinct'+
+  '(b-> $2) ->> $3 as event_name,' +
+  'substring((b-> $4) ->> $5,0,11) as date' +
+  ' from responses ' +
+  'join lateral jsonb_array_elements(response_data -> $1) b on true ' +
+  'where category = $1 ' +
+  'and to_date(substring((b-> $4) ->> $5,0,11),$6) between to_date($7,$6) and to_date($8,$6) order by 2 asc',[events,name,text,start,local,dateFormat,start_date,end_date])
+    .then(function (data) {
+console.log(data);
+     res.status(200)
+     .json({
+        data:  data
+            });
+    })
+    .catch(function (err) {
+      return next(err);
+    });
+};
+
 module.exports = {
   getAverageTemps: getAverageTemps,
   getAverageCondition: getAverageCondition,
   getAverageHumidity: getAverageHumidity,
-  getTopNews: getTopNews
+  getTopNews: getTopNews,
+  getTopEvents: getTopEvents
 };
