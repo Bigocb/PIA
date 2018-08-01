@@ -1,14 +1,13 @@
 const express = require('express');
 const path = require('path');
-const logger = require('morgan');
+var morgan = require('morgan');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
-
+var winston = require('./config/winston');
 const routes = require('./server/routes/index');
-
 const app = express();
 
-app.use(logger('dev'));
+app.use(morgan('combined', { stream: winston.stream }));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
@@ -47,7 +46,5 @@ app.use((err, req, res, next) => {
     error: {}
   });
 });
-
-
 
 module.exports = app;

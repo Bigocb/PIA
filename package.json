@@ -3,31 +3,36 @@
   "version": "0.5.0",
   "private": true,
   "scripts": {
-    "start": "supervisor ./bin/www"
+    "start": "supervisor ./bin/www",
+    "test": "mocha"
   },
   "dependencies": {
     "angular-bootstrap-toggle": "^0.1.2",
     "angular-datatables": "^6.0.0",
     "angular-ui-switch": "^0.1.1",
     "angularjs-datepicker": "^2.1.23",
+    "app-root-path": "^2.1.0",
     "blubird": "0.0.1-security",
     "bluebird": "^3.5.1",
-    "body-parser": "~1.15.1",
+    "body-parser": "^1.18.3",
+    "config": "^2.0.1",
     "constantinople": "^3.1.2",
     "cookie-parser": "~1.4.3",
     "debug": "~2.2.0",
-    "express": "~4.13.4",
+    "express": "^4.16.3",
     "jade": "~1.11.0",
     "jstransformer": "^1.0.0",
-    "morgan": "~1.7.0",
+    "mocha": "^5.2.0",
+    "morgan": "^1.9.0",
     "pg": "^6.1.0",
     "pg-monitor": "^1.0.0",
     "pg-promise": "^8.4.5",
     "pug": "^2.0.3",
     "request": "^2.87.0",
     "request-promise": "^4.2.2",
-    "serve-favicon": "~2.3.0",
+    "serve-favicon": "^2.5.0",
     "supervisor": "^0.12.0",
+    "winston": "^3.0.0",
     "xml2js": "^0.4.19"
   }
 }

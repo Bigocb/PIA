@@ -5,7 +5,7 @@ var options = {
   promiseLib: promise
 };
 
-var dbConfig = require('../database/config/config').get('main');
+var dbConfig = require('config').get('main');
 var dbHostPassport = dbConfig.get('dbConfig.host');
 var dbPortPassport = dbConfig.get('dbConfig.port');
 var dbNamePassport = dbConfig.get('dbConfig.dbName');
