@@ -1,184 +1,233 @@
 <!DOCTYPE html>
 <html lang="en" ng-app="nodeTodo">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <link rel="icon" href="../../favicon.ico">
 
-    <title>Dashboard Template for Bootstrap</title>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <script>window.jQuery || document.write('<script src="../stylesheets/assets/js/vendor/jquery.min.js"><\/script>')</script>
-    <!-- Bootstrap core CSS -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.6/angular.min.js"></script>
-<link href="../../node_modules/angularjs-datepicker/src/css/angular-datepicker.css" rel="stylesheet" type="text/css" />
-   <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <link rel="icon" href="../../favicon.ico">
 
-    <link rel="stylesheet" href="../stylesheets/dashboard.css" media="screen">
+  <title>Paare</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <script>
+    window.jQuery || document.write('<script src="../stylesheets/assets/js/vendor/jquery.min.js"><\/script>')
+  </script>
+  <!-- Bootstrap core CSS -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+    crossorigin="anonymous"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.6/angular.min.js"></script>
+  <link rel="stylesheet" href="../stylesheets/dashboard.css" media="screen">
+  <link href="../../node_modules/angularjs-datepicker/src/css/angular-datepicker.css" rel="stylesheet" type="text/css" />
+  <!-- Latest compiled and minified CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+    crossorigin="anonymous">
 
-    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-    <link href="../stylesheets/assets/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
+  <link rel="stylesheet" href="../stylesheets/dashboard.css" media="screen">
 
-    <!-- Custom styles for this template -->
-   
-    <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
-    <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
-    <script src="../stylesheets/assets/js/ie-emulation-modes-warning.js"></script>
+  <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+  <link href="../stylesheets/assets/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
 
-    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-    <!--[if lt IE 9]>
+  <!-- Custom styles for this template -->
+
+  <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
+  <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+  <script src="../stylesheets/assets/js/ie-emulation-modes-warning.js"></script>
+
+  <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+  <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
-    <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.18/css/dataTables.bootstrap.min.css"/>
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/scroller/1.5.0/css/scroller.bootstrap.min.css"/>
-     
-    <script type="text/javascript" src="https://cdn.datatables.net/1.10.18/js/dataTables.bootstrap.min.js"></script>
-    <script type="text/javascript" src="https://cdn.datatables.net/scroller/1.5.0/js/dataTables.scroller.min.js"></script>
-<style>
+  <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.18/css/dataTables.bootstrap.min.css" />
+  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/scroller/1.5.0/css/scroller.bootstrap.min.css" />
 
-.col-sm-offset-3 {
-     margin-left: 5%; 
-}
+  <script type="text/javascript" src="https://cdn.datatables.net/1.10.18/js/dataTables.bootstrap.min.js"></script>
+  <script type="text/javascript" src="https://cdn.datatables.net/scroller/1.5.0/js/dataTables.scroller.min.js"></script>
+  <style>
+    .col-sm-offset-3 {
+      margin-left: 5%;
+    }
 
 
-.col-sm-9 {
-     width: 95%; 
-}
-
-</style>
-    <script type="text/javascript">
-	
-        $(document).ready(function() {
-          var table = $('#example').DataTable( {
-            "processing": true,
-                    "ajax": {
+    .col-sm-9 {
+      width: 95%;
+    }
+  </style>
+  <script type="text/javascript">
+    $(document).ready(function () {
+      var table = $('#example').DataTable({
+        "processing": true,
+        "ajax": {
           "url": "http://localhost:3000/api/weather",
-         },
-         "columns": [
-                  { "data": "state" },
-                  { "data": "city" },
-                  { "data": "zip" },
-                  { "data": "observation_time" },
-                  { "data": "temp_f" }
-                        ]
-          } );
-          setInterval( function () {
-          table.ajax.reload( null, false ); // user paging is not reset on reload
-      }, 300000 );
-      } );
-      
-      
-        </script>
-  </head>
+        },
+        "columns": [{
+            "data": "state"
+          },
+          {
+            "data": "city"
+          },
+          {
+            "data": "zip"
+          },
+          {
+            "data": "observation_time"
+          },
+          {
+            "data": "temp_f"
+          }
+        ]
+      });
+      setInterval(function () {
+        table.ajax.reload(null, false); // user paging is not reset on reload
+      }, 300000);
+    });
+  </script>
+</head>
 
-  <body>
+<body>
 
-    <nav class="navbar navbar-inverse navbar-fixed-top">
-      <div class="container-fluid">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand" href="/">Project name</a>
-        </div>
-        <div id="navbar" class="navbar-collapse collapse">
-          <ul class="nav navbar-nav navbar-right">
-              <li><a href="/admin">Dashboard</a></li>
-            <li><a href="#">Settings</a></li>
-            <li><a href="#">Profile</a></li>
-            <li><a href="#">Help</a></li>
-          </ul>
-          <form class="navbar-form navbar-right">
-            <input type="text" class="form-control" placeholder="Search...">
-          </form>
-        </div>
+  <nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false"
+          aria-controls="navbar">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="/">Paare</a>
       </div>
-    </nav>
+      <div id="navbar" class="navbar-collapse collapse">
+        <ul class="nav navbar-nav navbar-right">
+          <li>
+            <a href="/admin">Dashboard</a>
+          </li>
+          <li>
+            <a href="#">Settings</a>
+          </li>
+          <li>
+            <a href="#">Profile</a>
+          </li>
+          <li>
+            <a href="#">Help</a>
+          </li>
+        </ul>
+        <form class="navbar-form navbar-right">
+          <input type="text" class="form-control" placeholder="Search...">
+        </form>
+      </div>
+    </div>
+  </nav>
 
-    <div  class="container-fluid">
-      <div class="row">
-         
-        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-            <div ng-controller="date">
-                <div ng-repeat="todo in todoData.data" class="peek">
-                 
-                    <h1 class="page-header">Data for {{todo.preff_value}} </h1>
-            </div>
+  <div class="container-fluid">
+    <div class="row">
 
-            <!-- TODO: remove windows.reload and use model to reload objects-->
-             <div ng-controller="mainController">
-          <form>                       
-                <select name="cars" ng-model="date" ng-change="updDate()"> 
-                    <option value="2018-08-02">2018-08-02</option>
-                    <option value="2018-08-01">2018-08-01</option>
-              <option value="2018-07-31">2018-07-31</option>
-              <option value="2018-07-30">2018-07-30</option>
-              <option value="2018-07-29">2018-07-29</option>
-              <option value="2018-07-28">2018-07-28</option>
-              <option value="2018-07-27">2018-07-27</option>
-            </select>
-              
+      <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+        <div ng-controller="date">
+          <div ng-repeat="todo in todoData.data" class="peek">
+
+            <h1 class="page-header">Data for {{todo.preff_value}} </h1>
+          </div>
+
+          <!-- TODO: remove windows.reload and use model to reload objects-->
+          <div ng-controller="mainController">
+            <form>
+              <select name="cars" ng-model="date" ng-change="updDate()">
+                <option value="2018-08-02">2018-08-02</option>
+                <option value="2018-08-01">2018-08-01</option>
+                <option value="2018-07-31">2018-07-31</option>
+                <option value="2018-07-30">2018-07-30</option>
+                <option value="2018-07-29">2018-07-29</option>
+                <option value="2018-07-28">2018-07-28</option>
+                <option value="2018-07-27">2018-07-27</option>
+              </select>
+
               <button type="submit" class="menuButtons" onclick="window.location.reload()" ng-click="updDate()">Date...</button>
             </form>
           </div>
-         
 
-        <h2 class="sub-header">Weather</h2>
+
+          <h2 class="sub-header">Weather</h2>
           <div class="row placeholders">
-            <div ng-controller="humidity"  class="col-xs-6 col-sm-3 placeholder3">
-                <div ng-repeat="todo in todoData" class="peek">
-                    <h2>{{todo}}</h2>
-            </div>
+            <div ng-controller="humidity" class="col-xs-6 col-sm-3 placeholder3">
+              <div ng-repeat="todo in todoData" class="peek">
+                <h2>{{todo}}</h2>
+              </div>
               <h4>Humidity</h4>
               <span class="text-muted">Charlotte, NC</span>
             </div>
-            <div ng-controller="ctl"class="col-xs-6 col-sm-3 placeholder2">
-                <div ng-repeat="todo in todoData" class="peek">
-                    <h2>{{todo}}</h2>
-            </div>
+            <div ng-controller="ctl" class="col-xs-6 col-sm-3 placeholder2">
+              <div ng-repeat="todo in todoData" class="peek">
+                <h2>{{todo}}</h2>
+              </div>
               <h4>Weather Condition</h4>
               <span class="text-muted">Charlotte, NC</span>
             </div>
             <div ng-controller="temp" class="col-xs-6 col-sm-3 placeholder1">
-                    <div ng-repeat="todo in todoData" class="peek">
-                            <h1>{{todo}}</h1>
-                    </div>
+              <div ng-repeat="todo in todoData" class="peek">
+                <h1>{{todo}}</h1>
+              </div>
               <h4>Average Temp</h4>
               <span class="text-muted">Charlotte, NC</span>
             </div>
-            
+
             <div ng-controller="news" class="col-xs-6 col-sm-3 headline">
-                <div ng-repeat="todo in todoData" class="peek">
-                    <h2>{{todo}}</h2>
-                    <h4>Top Headline</h4>
+              <div ng-repeat="todo in todoData" class="peek">
+                <h2>{{todo}}</h2>
+                <h4>Top Headline</h4>
+              </div>
             </div>
           </div>
-        </div>
 
-          <h2 class="sub-header">Events</h2>
+          
+          <div>
+          <div ng-controller="events" class="test_3" >
+           <h2>Local Events </h2>
+            <table class="blueTable">
+                <thead>
+                    <tr>
+              <th>Event</th>
+              <th>date</th>
+            </tr>
+          </thead>
+              <tr ng-repeat="todo in todoData.data">
+                <td>{{ todo.event_name }}</td>
+                <td>{{ todo.date }}</td>
+              </tr>
+            </table>      
+
          
-          <div ng-controller="events"  class="table-responsive">
-              <table>
-                  <th>Event</th>
-                  <th>date</th>
-                  <tr ng-repeat="todo in todoData.data">
-                    <td>{{ todo.event_name }}</td>
-                    <td>{{ todo.date }}</td>
-                  </tr>
-                </table>
-    
           </div>
          
+
+          <div ng-controller="health" class="test_1" >
+            <h2>  My Health</h2>
+            <div ng-repeat="todo in todoData.data" class="tp_left">
+                <h1>{{ todo.flights_climbed }}</h1>
+                <h4>Flights Climbed</h4>
+            </div>
+            <div ng-repeat="todo in todoData.data" class="tp_right">
+                <h1>{{ todo.steps }}</h1>
+                <h4>Steps</h4>
+            </div>
+            <div ng-repeat="todo in todoData.data" class="bt_left">
+                <h1>{{ todo.distance }}</h1>
+                <h4>Miles</h4>
+            </div>
+            <div ng-repeat="todo in todoData.data" class="bt_right">
+                <h1>{{ todo.flights_climbed }}</h1>
+                <h4>Extra</h4>
+            </div>
+   
+          </div>
+        
+          </div>
+
         </div>
       </div>
     </div>
@@ -188,12 +237,14 @@
     <!-- Placed at the end of the document so the pages load faster -->
 
     <!-- Latest compiled and minified JavaScript -->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.6/angular.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+      crossorigin="anonymous"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.6/angular.min.js"></script>
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <script src="../stylesheets/assets/js/ie10-viewport-bug-workaround.js"></script>
-    <script src="../../node_modules/angularjs-datepicker/src/js/angular-datepicker.js"></script> 
-    <script src="../javascripts/app.js"></script>  
+    <script src="../../node_modules/angularjs-datepicker/src/js/angular-datepicker.js"></script>
+    <script src="../javascripts/app.js"></script>
     <script async defer id="github-bjs" src="https://buttons.github.io/buttons.js"></script>
 </body>
+
 </html>

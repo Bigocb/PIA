@@ -3,10 +3,10 @@
  */
 
 /* Move down content because we have a fixed navbar that is 50px tall */
+
 body {
   padding-top: 50px;
 }
-
 
 /*
  * Global add-ons
@@ -21,6 +21,7 @@ body {
  * Top navigation
  * Hide default border to remove 1px line.
  */
+
 .navbar-fixed-top {
   border: 0;
 }
@@ -30,14 +31,70 @@ body {
   margin-top: 30px;
 }
 
+.test_1 {
+ width: 50%;
+  float: right;
+}
+
+.test_3 {
+  float: left;
+}
+
+.tp_left {
+  float: left;
+  text-align: center;
+  padding-top: 50px;
+  width: 50%;
+  border: 1px solid grey;
+  min-height: 200px;
+  background-color: #008B95;
+}
+.tp_right {
+  float: right;
+  text-align: center;
+  padding-top: 50px;
+  width: 50%;
+  border: 1px solid grey;
+  min-height: 200px;
+  background-color: #E37222;
+}
+
+.bt_left {
+  float: left;
+  text-align: center;
+  padding-top: 50px;
+  width: 50%;
+  border: 1px solid grey;
+  min-height: 200px;
+  background-color: #33A2AA;
+}
+.bt_right {
+  float: right;
+  text-align: center;
+  padding-top: 50px;
+  width: 50%;
+  border: 1px solid grey;
+  min-height: 200px;
+  background-color: #E98E4E;
+}
+
+.table_responsive_3 {
+  max-width: 400px;
+  clear: both;
+  border: solid black;
+  float: right;
+}
+
 /*
  * Sidebar
  */
 
 /* Hide for mobile, show later */
+
 .sidebar {
   display: none;
 }
+
 @media (min-width: 768px) {
   .sidebar {
     position: fixed;
@@ -48,25 +105,30 @@ body {
     display: block;
     padding: 20px;
     overflow-x: hidden;
-    overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
+    overflow-y: auto;
+    /* Scrollable contents if viewport is shorter than content. */
     background-color: #f5f5f5;
     border-right: 1px solid #eee;
   }
 }
 
 /* Sidebar navigation */
+
 .nav-sidebar {
-  margin-right: -21px; /* 20px padding + 1px border */
+  margin-right: -21px;
+  /* 20px padding + 1px border */
   margin-bottom: 20px;
   margin-left: -20px;
 }
-.nav-sidebar > li > a {
+
+.nav-sidebar>li>a {
   padding-right: 20px;
   padding-left: 20px;
 }
-.nav-sidebar > .active > a,
-.nav-sidebar > .active > a:hover,
-.nav-sidebar > .active > a:focus {
+
+.nav-sidebar>.active>a,
+.nav-sidebar>.active>a:hover,
+.nav-sidebar>.active>a:focus {
   color: #fff;
   background-color: #008B95;
 }
@@ -75,7 +137,6 @@ body {
   margin-top: 5px;
 }
 
-
 /*
  * Main content
  */
@@ -83,12 +144,14 @@ body {
 .main {
   padding: 20px;
 }
+
 @media (min-width: 768px) {
   .main {
     padding-right: 40px;
     padding-left: 40px;
   }
 }
+
 .main .page-header {
   margin-top: 0;
 }
@@ -110,13 +173,13 @@ body {
   margin-left: 10px;
   text-align: center;
 }
+
 .placeholders h4 {
   margin-bottom: 0;
 }
 
-
 .placeholder1 {
- background-color: #E37222;
+  background-color: #E37222;
   background-repeat: no-repeat;
   background-size: 200px 200px;
   min-width: 200px;
@@ -131,55 +194,109 @@ body {
 
 .placeholder3 {
   background-color: #E98E4E;
-   background-repeat: no-repeat;
-   background-size: 200px 200px;
-   min-width: 200px;
-   margin-left: 60px;
-   margin-bottom: 15px;
-   max-width: 200px;
-   min-height: 200px;
-   position: relative;
-   padding-top: 25px;
-   border-radius: 100%;
-  
- }
+  background-repeat: no-repeat;
+  background-size: 200px 200px;
+  min-width: 200px;
+  margin-left: 60px;
+  margin-bottom: 15px;
+  max-width: 200px;
+  min-height: 200px;
+  position: relative;
+  padding-top: 25px;
+  border-radius: 100%;
+}
 
- .text-muted {
-   color: #f5f5f5;
- }
+.text-muted {
+  color: #f5f5f5;
+}
 
- .placeholder4 {
+.placeholder4 {
   background-color: #33A2AA;
-   background-repeat: no-repeat;
-   background-size: 200px 200px;
-   min-width: 200px;
-   margin-left: 60px;
-   max-width: 200px;
-   min-height: 200px;
-   position: relative;
-   padding-top: 35px;
-   border-radius: 100%;
-   margin-bottom: 15px;
-  
- }
- 
+  background-repeat: no-repeat;
+  background-size: 200px 200px;
+  min-width: 200px;
+  margin-left: 60px;
+  max-width: 200px;
+  min-height: 200px;
+  position: relative;
+  padding-top: 35px;
+  border-radius: 100%;
+  margin-bottom: 15px;
+}
 
 .placeholder2 {
   background-color: #66B9BF;
-   background-repeat: no-repeat;
-   background-size: 200px 200px;
-   min-width: 200px;
-   margin-left: 60px;
-   max-width: 200px;
-   min-height: 200px;
-   position: relative;
-   padding-top: 20px;
-   border-radius: 100%;
-   margin-bottom: 15px;
-  
- }
+  background-repeat: no-repeat;
+  background-size: 200px 200px;
+  min-width: 200px;
+  margin-left: 60px;
+  max-width: 200px;
+  min-height: 200px;
+  position: relative;
+  padding-top: 20px;
+  border-radius: 100%;
+  margin-bottom: 15px;
+}
 
 .placeholder img {
   display: inline-block;
   border-radius: 50%;
+}
+
+table.blueTable {
+  border: 1px solid #1C6EA4;
+  background-color: #EEEEEE;
+  width: 100%;
+  text-align: left;
+  border-collapse: collapse;
+}
+table.blueTable td, table.blueTable th {
+  border: 1px solid #AAAAAA;
+  padding: 3px 2px;
+}
+table.blueTable tbody td {
+  font-size: 13px;
+}
+table.blueTable tr:nth-child(even) {
+  background: #D0E4F5;
+}
+table.blueTable thead {
+  background: #1C6EA4;
+  background: -moz-linear-gradient(top, #5592bb 0%, #327cad 66%, #1C6EA4 100%);
+  background: -webkit-linear-gradient(top, #5592bb 0%, #327cad 66%, #1C6EA4 100%);
+  background: linear-gradient(to bottom, #5592bb 0%, #327cad 66%, #1C6EA4 100%);
+  border-bottom: 2px solid #444444;
+}
+table.blueTable thead th {
+  font-size: 15px;
+  font-weight: bold;
+  color: #FFFFFF;
+  border-left: 2px solid #D0E4F5;
+}
+table.blueTable thead th:first-child {
+  border-left: none;
+}
+
+table.blueTable tfoot {
+  font-size: 14px;
+  font-weight: bold;
+  color: #FFFFFF;
+  background: #D0E4F5;
+  background: -moz-linear-gradient(top, #dcebf7 0%, #d4e6f6 66%, #D0E4F5 100%);
+  background: -webkit-linear-gradient(top, #dcebf7 0%, #d4e6f6 66%, #D0E4F5 100%);
+  background: linear-gradient(to bottom, #dcebf7 0%, #d4e6f6 66%, #D0E4F5 100%);
+  border-top: 2px solid #444444;
+}
+table.blueTable tfoot td {
+  font-size: 14px;
+}
+table.blueTable tfoot .links {
+  text-align: right;
+}
+table.blueTable tfoot .links a{
+  display: inline-block;
+  background: #1C6EA4;
+  color: #FFFFFF;
+  padding: 2px 8px;
+  border-radius: 5px;
 }

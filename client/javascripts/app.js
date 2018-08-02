@@ -138,6 +138,17 @@ $scope.$watch('myDate', function (value) {
   });
 })
 
+.controller('health', ($scope, $http) => {
+  $http.get('/api/health/')
+  .success((data) => {
+    $scope.todoData = data;
+    console.log(data);
+  })
+  .error((error) => {
+    console.log('Error: ' + error);
+  });
+})
+
 .controller('humidity', ($scope, $http) => {
   $http.get('/api/avghumidity/')
   .success((data) => {

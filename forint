@@ -1,7 +1,5 @@
 Testing
 Refactor and clean 
- - rename queries.js and move to util folder
- - fix dropdown to auto submit
- - add graph
- - health data
-
+ - wire manual refreshes
+ - fix error with schedules
+ - wires auto poll stop

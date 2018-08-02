@@ -6,10 +6,22 @@ const bodyParser = require('body-parser');
 var winston = require('./config/winston');
 const routes = require('./server/routes/index');
 const app = express();
+const scheduler = require('./data/controls/schedules')
+var chai = require('chai');
+var chaiHttp = require('chai-http');
+// *** config file *** //
+var should = chai.should();
 
-app.use(morgan('combined', { stream: winston.stream }));
+chai.use(chaiHttp);
+
+
+app.use(morgan('combined', {
+  stream: winston.stream
+}));
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({
+  extended: false
+}));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'client')));
 
