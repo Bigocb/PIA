@@ -17,8 +17,3 @@ setInterval(() => {
 }, 400000);
 
 
-
-  setInterval(inbound.getMedia, 1000);
-  setInterval(function(){
-    inbound.getNegetMediaws();
-   }, 50000);

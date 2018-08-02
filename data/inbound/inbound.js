@@ -119,8 +119,7 @@ function getMedia(req, res, next) {
             });
         })
     }
-    return res.status;
-  }, function (err) {
+    }, function (err) {
     return next(err);
   });
 }
