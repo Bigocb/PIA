@@ -7,12 +7,13 @@ chai.use(chaiHttp);
 
 var assert = require('assert');
 describe('Array', function() {
-  it('should list ALL blobs on /blobs GET', function(done) {
+  it('should list ALL blobs on /out/events GET', function(done) {
     chai.request(server)
-      .get('/weather')
+      .get('/out/events ')
       .end(function(err, res){
         res.should.have.status(200);
         done();
       });
   });
 });
+
