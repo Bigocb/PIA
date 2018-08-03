@@ -32,11 +32,12 @@ body {
 }
 
 .test_1 {
- width: 50%;
+ width: 49%;
   float: right;
 }
 
 .test_3 {
+  width: 49%;
   float: left;
 }
 
@@ -244,7 +245,7 @@ body {
 }
 
 table.blueTable {
-  border: 1px solid #1C6EA4;
+  border: 1px solid #33A2AA;
   background-color: #EEEEEE;
   width: 100%;
   text-align: left;
@@ -261,10 +262,10 @@ table.blueTable tr:nth-child(even) {
   background: #D0E4F5;
 }
 table.blueTable thead {
-  background: #1C6EA4;
-  background: -moz-linear-gradient(top, #5592bb 0%, #327cad 66%, #1C6EA4 100%);
-  background: -webkit-linear-gradient(top, #5592bb 0%, #327cad 66%, #1C6EA4 100%);
-  background: linear-gradient(to bottom, #5592bb 0%, #327cad 66%, #1C6EA4 100%);
+  background: #33A2AA;
+  background: -moz-linear-gradient(top, #33A2AA 0%, #33A2AA 66%, #33A2AA 100%);
+  background: -webkit-linear-gradient(top, #33A2AA 0%, #33A2AA 66%, #33A2AA 100%);
+  background: linear-gradient(to bottom, #33A2AA 0%, #33A2AA 66%, #33A2AA 100%);
   border-bottom: 2px solid #444444;
 }
 table.blueTable thead th {

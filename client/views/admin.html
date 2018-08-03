@@ -10,7 +10,7 @@
   <meta name="author" content="">
   <link rel="icon" href="../../favicon.ico">
 
-  <title>Dashboard Template for Bootstrap</title>
+  <title>Paare</title>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
   <script>
     window.jQuery || document.write('<script src="../stylesheets/assets/js/vendor/jquery.min.js"><\/script>')
@@ -45,7 +45,7 @@
     $(document).ready(function () {
       var table = $('#example').DataTable({
         "ajax": {
-          "url": "http://localhost:3000/data",
+          "url": "http://localhost:3000/out/data",
         },
         scrollY: 600,
         deferRender: true,
@@ -91,7 +91,7 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="/">Project name</a>
+        <a class="navbar-brand" href="/">Paare</a>
       </div>
       <div id="navbar" class="navbar-collapse collapse">
         <ul class="nav navbar-nav navbar-right">
@@ -128,15 +128,14 @@
             <button class="menuButtons" type="submit" ng-click="getWeather()">Refresh Weather</button>
           </li>
           <li>
-            <button class="menuButtons" type="submit" ng-click="getWeather()">Refresh News</button>
+            <button class="menuButtons" type="submit" ng-click="getNews()">Refresh News</button>
           </li>
           <li>
-            <button class="menuButtons" type="submit" ng-click="getWeather()">Refresh Events</button>
+            <button class="menuButtons" type="submit" ng-click="getEvents()">Refresh Events</button>
           </li>
           <li>
-            <button class="menuButtons" type="submit" ng-click="getWeather()">Refresh Media</button>
+            <button class="menuButtons" type="submit" ng-click="getMedia()">Refresh Media</button>
           </li>
-          <button class="menuButtons" type="submit" ng-click="updParam()">Refresh Param</button>
         </ul>
 
         <ul class="nav nav-sidebar">

@@ -1,25 +1,25 @@
 const express = require('express');
 const router = express.Router();
 const path = require('path');
-var inb = require('../../data/inbound/inbound');
-var util = require('../../data/util');
-var analysis = require('../../data/analysis/logic')
+var inb = require('../../server/data/inbound/inbound');
+var util = require('../../server/data/util');
+var analysis = require('../../server/data/analysis/logic')
 
 // util routes
-router.get('/api/weather', util.getAllWeather); //may not need
-router.get('/data', util.getData);
-router.get('/api/updparam/:name', util.updatePrefs);
-router.get('/api/date/:date', util.updateDate);
-router.get('/api/curdate', util.getCurrDate);
-router.get('/datacnt', util.getDataCount);
+router.get('/util/updparam/:name', util.updatePrefs);
+router.get('/util/date/:date', util.updateDate);
 
-// Analytic Routes
-router.get('/api/avgtemp/', analysis.getAverageTemps);
-router.get('/api/avgcondition/', analysis.getAverageCondition);
-router.get('/api/avghumidity/', analysis.getAverageHumidity);
-router.get('/api/topnews/', analysis.getTopNews);
-router.get('/api/events', analysis.getTopEvents);
-router.get('/api/health', analysis.getDailyHealth);
+
+// Outbound (frontend) Routes
+router.get('/out/avgtemp/', analysis.getAverageTemps);
+router.get('/out/avgcondition/', analysis.getAverageCondition);
+router.get('/out/avghumidity/', analysis.getAverageHumidity);
+router.get('/out/topnews/', analysis.getTopNews);
+router.get('/out/events', analysis.getTopEvents);
+router.get('/out/health', analysis.getDailyHealth);
+router.get('/out/data', util.getData);
+router.get('/out/curdate', util.getCurrDate);
+router.get('/out/datacnt', util.getDataCount);
 
 
 // external API routes (inbound)

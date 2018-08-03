@@ -1,1 +1,1 @@
-Personal Analytics Engine
+Personal Analytics and Recomendation Engine

@@ -6,7 +6,7 @@ const bodyParser = require('body-parser');
 var winston = require('./config/winston');
 const routes = require('./server/routes/index');
 const app = express();
-const scheduler = require('./data/controls/schedules')
+const scheduler = require('./server/data/controls/schedules')
 var chai = require('chai');
 var chaiHttp = require('chai-http');
 // *** config file *** //
