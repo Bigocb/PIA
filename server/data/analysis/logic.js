@@ -11,7 +11,7 @@ function getAverageTemps(req, res, next) {
   var interval = '4 hours';
   db.any('select ' +
       '((response_data -> $2)->>$3) as temp_f' +
-      ' from responses, prefs  where category = $1 and (to_char(to_timestamp(response_key),$5)::date - (interval $6))::date = preff_value::date and pref_type = $4', [cat, node, tmp, day, dateFormat,interval])
+      ' from responses, prefs  where category = $1 and (to_char(to_timestamp(response_key-14440),$5))::date = preff_value::date and pref_type = $4', [cat, node, tmp, day, dateFormat,interval])
     .then(function (data) {
       var tar = [];
       for (var i = 0; i < data.length; i++) {
@@ -43,7 +43,7 @@ function getAverageCondition(req, res, next) {
   var dateFormat = 'yyyy-mm-dd';
   db.any('select ' +
       '((response_data -> $2)->>$1) as weather' +
-      ' from responses, prefs where category = $1 and (to_char(to_timestamp(response_key),$4)::date - (interval $5))::date = preff_value::date and pref_type = $3', [cat, node, day, dateFormat,interval])
+      ' from responses, prefs where category = $1 and (to_char(to_timestamp(response_key-14440),$4))::date = preff_value::date and pref_type = $3', [cat, node, day, dateFormat,interval])
     .then(function (data) {
       var tar = [];
       for (var i = 0; i < data.length; i++) {
@@ -85,7 +85,7 @@ function getAverageHumidity(req, res, next) {
   
   db.any('select ' +
       'trim($6 from ((response_data -> $2)->>$3))::int as humidity' +
-      ' from responses, prefs  where category = $1 and (to_char(to_timestamp(response_key),$5)::date - (interval $7))::date = preff_value::date and pref_type = $4 ', [cat, section, key, day, dateFormat, trimf,interval])
+      ' from responses, prefs  where category = $1 and (to_char(to_timestamp(response_key-14440),$5))::date = preff_value::date and pref_type = $4 ', [cat, section, key, day, dateFormat, trimf,interval])
     .then(function (data) { //build array of dew_point readings
       var tar = [];
       for (var i = 0; i < data.length; i++) {
@@ -133,7 +133,7 @@ function getTopNews(req, res, next) {
   db.any('select ' +
       'b ->> $3 as title' +
       ' from responses a  join lateral jsonb_array_elements(response_data -> $2) b on true join prefs on (to_char(to_timestamp(response_key),$5)::date - (interval $6))::date = preff_value::date ' +
-      ' where category = $1 and (to_char(to_timestamp(response_key),$5)::date - (interval $6))::date = preff_value::date  and pref_type = $4', [cat, section, key, day, dateFormat,interval])
+      ' where category = $1 and (to_char(to_timestamp(response_key-14440),$5))::date = preff_value::date  and pref_type = $4', [cat, section, key, day, dateFormat,interval])
     .then(function (data) {
       var tar = [];
 
