@@ -132,7 +132,7 @@ function getTopNews(req, res, next) {
   var dateFormat = 'yyyy-mm-dd';
   db.any('select ' +
       'b ->> $3 as title' +
-      ' from responses a  join lateral jsonb_array_elements(response_data -> $2) b on true join prefs on (to_char(to_timestamp(response_key),$5)::date - (interval $6))::date = preff_value::date ' +
+      ' from responses a  join lateral jsonb_array_elements(response_data -> $2) b on true join prefs on (to_char(to_timestamp(response_key-14440),$5))::date = preff_value::date ' +
       ' where category = $1 and (to_char(to_timestamp(response_key-14440),$5))::date = preff_value::date  and pref_type = $4', [cat, section, key, day, dateFormat,interval])
     .then(function (data) {
       var tar = [];
