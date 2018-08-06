@@ -182,6 +182,7 @@ $scope.updDate = () => {
 })
 
 .controller('events', ($scope, $http) => {
+  setInterval(function() {   
   $http.get('/out/events')
   .success((data) => {
     $scope.todoData = data;
@@ -190,4 +191,5 @@ $scope.updDate = () => {
   .error((error) => {
     console.log('Error: ' + error);
   });
+}, 3000);
 })
