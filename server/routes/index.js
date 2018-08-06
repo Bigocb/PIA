@@ -28,6 +28,8 @@ router.get('/media', inb.getMedia);
 router.get('/news', inb.getNews);
 router.get('/events', inb.getEvents);
 
+
+
 // main route
 router.get('/', (req, res, next) => {
   res.sendFile(path.join(
@@ -39,5 +41,7 @@ router.get('/admin', (req, res, next) => {
   res.sendFile(path.join(
     __dirname, '..', '..', 'client', 'views', 'admin.html'));
 });
+
+
 
 module.exports = router;

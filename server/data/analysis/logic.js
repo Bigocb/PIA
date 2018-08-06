@@ -107,7 +107,7 @@ function getAverageHumidity(req, res, next) {
         if (avg <= 55) {
           feel = 'Dry and Comfortable'
         } else if (avg > 55 && avg < 65) {
-          feel = 'Kind od Sticky'
+          feel = 'Kind of Sticky'
         } else {
           feel = 'Muggy and Oppressive'
         }

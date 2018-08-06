@@ -76,16 +76,7 @@ angular.module('nodeTodo', [])
     };
   
    
-    $scope.updDate = () => {
-      $http.get('/util/date/' + $scope.date)
-      .success((data) => {
-      $scope.todoData = data;
-        console.log(data);
-      })
-      .error((error) => {
-        console.log('Error: ' + error);
-      });
-    };
+  
     
 
     $scope.updParam = () => {
@@ -102,6 +93,7 @@ angular.module('nodeTodo', [])
 })
 
 .controller('ctl', ($scope, $http) => {
+  setInterval(function() {   
   $http.get('/out/avgcondition/')
   .success((data) => {
     $scope.todoData = data;
@@ -110,9 +102,11 @@ angular.module('nodeTodo', [])
   .error((error) => {
     console.log('Error: ' + error);
   });
+}, 3000);
 })
 
 .controller('health', ($scope, $http) => {
+  setInterval(function() {   
   $http.get('/out/health/')
   .success((data) => {
     $scope.todoData = data;
@@ -121,9 +115,11 @@ angular.module('nodeTodo', [])
   .error((error) => {
     console.log('Error: ' + error);
   });
+}, 3000);
 })
 
 .controller('humidity', ($scope, $http) => {
+  setInterval(function() {   
   $http.get('/out/avghumidity/')
   .success((data) => {
     $scope.todoData = data;
@@ -132,9 +128,11 @@ angular.module('nodeTodo', [])
   .error((error) => {
     console.log('Error: ' + error);
   });
+}, 3000);
 })
 
 .controller('news', ($scope, $http) => {
+  setInterval(function() {   
   $http.get('/out/topnews/')
   .success((data) => {
     $scope.todoData = data;
@@ -143,9 +141,11 @@ angular.module('nodeTodo', [])
   .error((error) => {
     console.log('Error: ' + error);
   });
+}, 3000);
 })
 
 .controller('date', ($scope, $http) => {
+  setInterval(function() {   
   $http.get('/out/curdate')
   .success((data) => {
     $scope.todoData = data;
@@ -154,9 +154,22 @@ angular.module('nodeTodo', [])
   .error((error) => {
     console.log('Error: ' + error);
   });
+}, 3000);
+
+$scope.updDate = () => {
+  $http.get('/util/date/' + $scope.date)
+  .success((data) => {
+  $scope.todoData = data;
+    console.log(data);
+  })
+  .error((error) => {
+    console.log('Error: ' + error);
+  });
+};
 })
 
 .controller('temp', ($scope, $http) => {
+  setInterval(function() {   
   $http.get('/out/avgtemp')
   .success((data) => {
     $scope.todoData = data;
@@ -165,6 +178,7 @@ angular.module('nodeTodo', [])
   .error((error) => {
     console.log('Error: ' + error);
   });
+}, 3000);
 })
 
 .controller('events', ($scope, $http) => {

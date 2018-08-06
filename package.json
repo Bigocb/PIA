@@ -1,10 +1,13 @@
 {
-  "name": "Personal_API",
+  "name": "paare",
   "version": "0.5.0",
   "private": true,
   "scripts": {
     "start": "supervisor ./bin/www",
-    "test": "mocha"
+    "test": "mocha",
+    "release:major": "changelog -M && git add CHANGELOG.md && git commit -m 'updated CHANGELOG.md' && npm version major && git push origin && git push origin --tags",
+"release:minor": "changelog -m && git add CHANGELOG.md && git commit -m 'updated CHANGELOG.md' && npm version minor && git push origin && git push origin --tags",
+"release:patch": "changelog -p && git add CHANGELOG.md && git commit -m 'updated CHANGELOG.md' && npm version patch && git push origin && git push origin --tags"
   },
   "dependencies": {
     "angular-bootstrap-toggle": "^0.1.2",
@@ -12,6 +15,8 @@
     "angular-ui-switch": "^0.1.1",
     "angularjs-datepicker": "^2.1.23",
     "app-root-path": "^2.1.0",
+    "appversion": "^1.7.1",
+    "bcrypt-nodejs": "0.0.3",
     "blubird": "0.0.1-security",
     "bluebird": "^3.5.1",
     "body-parser": "^1.18.3",
@@ -20,10 +25,13 @@
     "cookie-parser": "~1.4.3",
     "debug": "~2.2.0",
     "express": "^4.16.3",
+    "express-session": "^1.15.6",
     "jade": "~1.11.0",
     "jstransformer": "^1.0.0",
     "mocha": "^5.2.0",
     "morgan": "^1.9.0",
+    "passport": "^0.4.0",
+    "passport-local": "^1.0.0",
     "pg": "^6.1.0",
     "pg-monitor": "^1.0.0",
     "pg-promise": "^8.4.5",

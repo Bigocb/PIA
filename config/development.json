@@ -1,15 +1,11 @@
 {
   "main": {
     "dbConfig": {
-      "host": "paare.chhkxbxkyret.us-east-2.rds.amazonaws.com",
+      "host": "localhost",
       "port": 5432,
-      "dbName": "paare",
-      "user": "bigocb",
-      "pass": "Droppedsubset1"
-    },
-    "credit": {
-      "initialLimit": 100,
-      "initialDays": 1
+      "dbName": "pia",
+      "user": "postgres",
+      "pass": "Lscooter11"
     }
   }
 }

@@ -9,8 +9,8 @@ const app = express();
 const scheduler = require('./server/data/controls/schedules')
 var chai = require('chai');
 var chaiHttp = require('chai-http');
-// *** config file *** //
-var should = chai.should();
+
+
 
 chai.use(chaiHttp);
 

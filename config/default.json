@@ -6,10 +6,6 @@
       "dbName": "paare",
       "user": "bigocb",
       "pass": "Droppedsubset1"
-    },
-    "credit": {
-      "initialLimit": 100,
-      "initialDays": 1
     }
   }
 }
