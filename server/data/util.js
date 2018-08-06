@@ -1,4 +1,4 @@
-var db = require('../database/connections');
+const db = require('../database/connections');
 
 // TODO: refactor function to serve all pref updates
 function updatePrefs(req, res, next) {
@@ -70,7 +70,7 @@ function getAllWeather(req, res, next) {
 // TODO: change query to return nicer date
 function getData(req, res, next) {
   var hour = '4 hours';
-  db.any('select to_timestamp(response_key) - (interval $1)  as timestamp ,response_data as data,source,category from responses where to_timestamp(response_key) - (interval $1) > current_date-1 order by response_key desc ', hour)
+  db.any('select to_timestamp(response_key-14440)  as timestamp ,response_data as data,source,category from responses where to_timestamp(response_key-14440) > current_date-1 order by response_key desc ', hour)
     .then(function (data) {
       res.status(200)
         .json({
