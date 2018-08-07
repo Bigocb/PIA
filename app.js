@@ -9,15 +9,13 @@ const app = express();
 const scheduler = require('./server/data/controls/schedules')
 const chai = require('chai');
 const chaiHttp = require('chai-http');
-
-
-
 chai.use(chaiHttp);
 
 
 app.use(morgan('combined', {
   stream: winston.stream
 }));
+
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
   extended: false
