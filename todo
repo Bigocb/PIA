@@ -9,6 +9,8 @@ Tech Debt:
 - clean up <head> odf templates
 - setup circleci for CI
 - swithc date select to angular model with availible dates
+- implement template system for modularizing front end
+
 
 Features:
 
@@ -25,7 +27,10 @@ Features:
 
     Mobile:
 
+    Ideas:
 
+        - convert inbound/outbound/util to microservices for matenence and ease of upgrade. 
+           entire app doesn't have to be restarted for backend changes
 
 
 
