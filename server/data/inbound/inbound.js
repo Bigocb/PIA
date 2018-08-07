@@ -1,9 +1,8 @@
-var Promise = require("bluebird");
+const Promise = require("bluebird");
 const express = require('express');
-var request = require('request-promise');
-var db = require('../../database/connections');
-var parseString = require('xml2js').parseString;
-var sources = require('./sources')
+const request = require('request-promise');
+const db = require('../../database/connections');
+const sources = require('./sources')
 
 
 function getWeather(req, res, next) {
@@ -17,17 +16,17 @@ function getWeather(req, res, next) {
     });
 
   }).then(function (results) {
-    for (var i = 0; i < results.length; i++) {
+    for (let i = 0; i < results.length; i++) {
       insJson = results[i];
       console.log(src);
-      var source = 'weather';
+      let source = 'weather';
       db.none('insert into responses(response_data, response_key, category,source)' +
           'values($1,extract(epoch from current_timestamp),$2,$3)', [insJson, source, src])
         .then(function () {
           res.status(200)
             .json({
               status: 'success',
-              message: 'Inserted one puppy',
+              message: 'Inserted',
               data: insJson
             });
 
@@ -36,7 +35,7 @@ function getWeather(req, res, next) {
   }, function (err) {
     return next(err);
   });
-}
+};
 
 function getNews(req, res, next) {
   var src = [];
@@ -46,16 +45,16 @@ function getNews(req, res, next) {
       return JSON.parse(body);
     });
   }).then(function (results) {
-    for (var i = 0; i < results.length; i++) {
+    for (let i = 0; i < results.length; i++) {
       insJson = results[i];
-      var source = 'news';
+      let source = 'news';
       db.none('insert into responses(response_data, response_key, category,source)' +
           'values($1,extract(epoch from current_timestamp),$2,$3)', [insJson, source, src])
         .then(function () {
           res.status(200)
             .json({
               status: 'success',
-              message: 'Inserted one puppy',
+              message: 'Inserted',
               data: insJson
             });
 
@@ -64,7 +63,7 @@ function getNews(req, res, next) {
   }, function (err) {
     return next(err);
   });
-}
+};
 
 function getEvents(req, res, next) {
   var src = [];
@@ -74,16 +73,16 @@ function getEvents(req, res, next) {
       return JSON.parse(body);
     });
   }).then(function (results) {
-    for (var i = 0; i < results.length; i++) {
+    for (let i = 0; i < results.length; i++) {
       insJson = results[i];
-      var source = 'events';
+      let source = 'events';
       db.none('insert into responses(response_data, response_key, category,source)' +
           'values($1,extract(epoch from current_timestamp),$2,$3)', [insJson, source, src])
         .then(function () {
           res.status(200)
             .json({
               status: 'success',
-              message: 'Inserted one puppy',
+              message: 'Inserted',
               data: insJson
             });
 
@@ -92,37 +91,37 @@ function getEvents(req, res, next) {
   }, function (err) {
     return next(err);
   });
-}
+};
 
 function getMedia(req, res, next) {
   var src = [];
   Promise.map(sources.requestsmedia, function (obj) {
     return request(obj).then(function (body) {
-      
-        src.push(obj.url);
-        return JSON.parse(body);
-    
+
+      src.push(obj.url);
+      return JSON.parse(body);
+
     });
   }).then(function (result) {
     // console.log(result);
-    for (var i = 0; i < result.length; i++) {
+    for (let i = 0; i < result.length; i++) {
       insJson = result[i];
-      var source = 'media';
+      let source = 'media';
       db.none('insert into responses(response_data, response_key, category,source)' +
           'values($1,extract(epoch from current_timestamp),$2,$3)', [insJson, source, src])
         .then(function () {
           res.status(200)
             .json({
               status: 'success',
-              message: 'Inserted one puppy',
+              message: 'Inserted',
               data: insJson
             });
         })
     }
-    }, function (err) {
+  }, function (err) {
     return next(err);
   });
-}
+};
 
 
 module.exports = {

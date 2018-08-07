@@ -21,7 +21,7 @@ Server Software:
 Server Hostname:        localhost
 Server Port:            3000
 
-Document Path:          /api/v1/todos
+Document Path:          /weather
 Document Length:        119 bytes
 
 Concurrency Level:      20
@@ -66,7 +66,7 @@ diff --git a/server/routes/index.js b/server/routes/index.js
 index 45d9a05..e6ca250 100644
 --- a/server/routes/index.js
 +++ b/server/routes/index.js
-@@ -19,6 +19,12 @@ router.post('/api/v1/todos', function(req, res) {
+@@ -19,6 +19,12 @@ router.post('/weather', function(req, res) {
 
      // Get a Postgres client from the connection pool
      pg.connect(connectionString, function(err, client, done) {
@@ -79,7 +79,7 @@ index 45d9a05..e6ca250 100644
 
          // SQL Query > Insert Data
          client.query("INSERT INTO items(text, complete) values($1, $2)", [data.text, data.complete]);
-@@ -33,14 +39,10 @@ router.post('/api/v1/todos', function(req, res) {
+@@ -33,14 +39,10 @@ router.post('/weather', function(req, res) {
 
          // After all data is returned, close connection and return results
          query.on('end', function() {
@@ -95,7 +95,7 @@ index 45d9a05..e6ca250 100644
 
      });
  });
-@@ -51,6 +53,12 @@ router.get('/api/v1/todos', function(req, res) {
+@@ -51,6 +53,12 @@ router.get('/weather', function(req, res) {
 
      // Get a Postgres client from the connection pool
      pg.connect(connectionString, function(err, client, done) {
@@ -108,7 +108,7 @@ index 45d9a05..e6ca250 100644
 
          // SQL Query > Select Data
          var query = client.query("SELECT * FROM items ORDER BY id ASC;");
-@@ -62,15 +70,10 @@ router.get('/api/v1/todos', function(req, res) {
+@@ -62,15 +70,10 @@ router.get('/weather', function(req, res) {
 
          // After all data is returned, close connection and return results
          query.on('end', function() {
@@ -125,7 +125,7 @@ index 45d9a05..e6ca250 100644
      });
 
  });
-@@ -87,6 +90,12 @@ router.put('/api/v1/todos/:todo_id', function(req, res) {
+@@ -87,6 +90,12 @@ router.put('/weather/:id', function(req, res) {
 
      // Get a Postgres client from the connection pool
      pg.connect(connectionString, function(err, client, done) {
@@ -138,7 +138,7 @@ index 45d9a05..e6ca250 100644
 
          // SQL Query > Update Data
          client.query("UPDATE items SET text=($1), complete=($2) WHERE id=($3)", [data.text, data.complete, id]);
-@@ -101,15 +110,9 @@ router.put('/api/v1/todos/:todo_id', function(req, res) {
+@@ -101,15 +110,9 @@ router.put('/weather/:id', function(req, res) {
 
          // After all data is returned, close connection and return results
          query.on('end', function() {
@@ -155,7 +155,7 @@ index 45d9a05..e6ca250 100644
      });
 
  });
-@@ -124,6 +127,12 @@ router.delete('/api/v1/todos/:todo_id', function(req, res) {
+@@ -124,6 +127,12 @@ router.delete('/weather/:todo_id', function(req, res) {
 
      // Get a Postgres client from the connection pool
      pg.connect(connectionString, function(err, client, done) {
@@ -168,7 +168,7 @@ index 45d9a05..e6ca250 100644
 
          // SQL Query > Delete Data
          client.query("DELETE FROM items WHERE id=($1)", [id]);
-@@ -138,15 +147,9 @@ router.delete('/api/v1/todos/:todo_id', function(req, res) {
+@@ -138,15 +147,9 @@ router.delete('/weather/:id', function(req, res) {
 
          // After all data is returned, close connection and return results
          query.on('end', function() {
@@ -208,7 +208,7 @@ Server Software:
 Server Hostname:        localhost
 Server Port:            3000
 
-Document Path:          /api/v1/todos
+Document Path:          /weather
 Document Length:        119 bytes
 
 Concurrency Level:      20

@@ -13,14 +13,14 @@
 #
 # Examples:
 #     load-test.sh
-#     load-test.sh http://localhost:3000/api/v1/todos todo 60 100
+#     load-test.sh http://localhost:3000/weather 60 100
 
 # Use bash unofficial strict mode http://redsymbol.net/articles/unofficial-bash-strict-mode/
 set -eou pipefail
 IFS=$'\n\t'
 
-url=${1:-http://localhost:3000/api/v1/todos}
-db=${2:-todo}
+url=${1:-http://localhost:3000/weather
+db=${2:-pia}
 duration=${3:-10}
 users=${4:-20}
 
@@ -42,7 +42,7 @@ ps_running() {
 ab -c "$users" -t "$duration" "$url" & WAITPID=$!
 loop=1
 while ps_running "$WAITPID"; do
-    conn=$(pg_connections todo)
+    conn=$(pg_connections pia)
     echo "$((loop++))s:	$conn connections"
     sleep 1
 done

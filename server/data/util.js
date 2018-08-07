@@ -10,17 +10,15 @@ function updatePrefs(req, res, next) {
       res.status(200)
         .json({
           status: 'success',
-          message: 'Updated puppy'
+          message: 'Updated'
         });
     })
     .catch(function (err) {
       console.log('fail');
       return next(err);
     });
-}
+};
 
-
-// TODO: refactor function to serve all polling updates
 function updateDate(req, res, next) {
   var type = 'date'
   const id = req.params.date;
@@ -30,14 +28,14 @@ function updateDate(req, res, next) {
       res.status(200)
         .json({
           status: 'success',
-          message: 'Updated puppy'
+          message: 'Updated'
         });
     })
     .catch(function (err) {
       console.log('fail');
       return next(err);
     });
-}
+};
 
 function getAllWeather(req, res, next) {
   var cat = 'weather';
@@ -65,12 +63,12 @@ function getAllWeather(req, res, next) {
     .catch(function (err) {
       return next(err);
     });
-}
+};
 
-// TODO: change query to return nicer date
 function getData(req, res, next) {
-  var hour = '4 hours';
-  db.any('select to_timestamp(response_key-14440)  as timestamp ,response_data as data,source,category from responses where to_timestamp(response_key-14440) > current_date-1 order by response_key desc ', hour)
+
+  db.any('select to_timestamp(response_key-14440)  as timestamp ,response_data as data,source,category from responses where to_timestamp(response_key-14440) > current_date-1 order by response_key desc ')
+
     .then(function (data) {
       res.status(200)
         .json({
@@ -81,11 +79,11 @@ function getData(req, res, next) {
     .catch(function (err) {
       return next(err);
     });
-}
+};
 
 function getDataCount(req, res, next) {
-  var hour = 'yyyy-mm-dd';
-  db.any('select to_char(to_timestamp(a.response_key),$1),count(*) from responses a group by to_char(to_timestamp(a.response_key),$1) order by 1 desc', hour)
+  var date_format = 'yyyy-mm-dd';
+  db.any('select to_char(to_timestamp(a.response_key),$1),count(*) from responses a group by to_char(to_timestamp(a.response_key),$1) order by 1 desc', date_format)
     .then(function (data) {
       res.status(200)
         .json({
@@ -96,7 +94,7 @@ function getDataCount(req, res, next) {
     .catch(function (err) {
       return next(err);
     });
-}
+};
 
 
 function getCurrDate(req, res, next) {
@@ -112,7 +110,7 @@ function getCurrDate(req, res, next) {
     .catch(function (err) {
       return next(err);
     });
-}
+};
 
 module.exports = {
   updateDate: updateDate,

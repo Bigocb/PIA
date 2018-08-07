@@ -1,6 +1,4 @@
-const express = require('express');
-var promise = require('bluebird');
-var db = require('../../database/connections');
+const db = require('../../database/connections');
 
 // weather vars
 const node = 'current_observation';
@@ -11,20 +9,19 @@ const dateFormat = 'yyyy-mm-dd';
 const day = 'date';
 
 function getAverageTemps(req, res, next) {
-  var tmp = 'temp_f';
+  let tmp = 'temp_f';
   db.any('select ' +
       '((response_data -> $2)->>$3) as temp_f' +
       ' from responses, prefs  where category = $1 and (to_char(to_timestamp(response_key-14440),$5))::date = preff_value::date and pref_type = $4', [cat, node, tmp, day, dateFormat])
     .then(function (data) {
       var tar = [];
-      for (var i = 0; i < data.length; i++) {
+      for (let i = 0; i < data.length; i++) {
         var total = [];
-        var date = [];
         total += Number(data[i].temp_f);
         tar.push(parseInt(total));
       }
-      console.log(tar);
-      var sum = tar.reduce( function(total, amount){
+   //   console.log(tar);
+      var sum = tar.reduce(function (total, amount) {
         return total + amount
       });
       var avg = Math.round(sum / tar.length);
@@ -44,7 +41,7 @@ function getAverageCondition(req, res, next) {
       ' from responses, prefs where category = $1 and (to_char(to_timestamp(response_key-14440),$4))::date = preff_value::date and pref_type = $3', [cat, node, day, dateFormat])
     .then(function (data) {
       var tar = [];
-      for (var i = 0; i < data.length; i++) {
+      for (let i = 0; i < data.length; i++) {
         var total = [];
         total += data[i].weather;
         tar.push(total);
@@ -54,7 +51,7 @@ function getAverageCondition(req, res, next) {
       var max = 0;
       var result;
 
-      for (var v in tar) {
+      for (let v in tar) {
         freq[tar[v]] = (freq[tar[v]] || 0) + 1;
         if (freq[tar[v]] > max) {
           max = freq[tar[v]];
@@ -73,27 +70,21 @@ function getAverageCondition(req, res, next) {
 };
 
 function getAverageHumidity(req, res, next) {
-  var key = 'dewpoint_f';
-  var trimf = '%';  
+  let key = 'dewpoint_f';
+  let trimf = '%';
   db.any('select ' +
       'trim($6 from ((response_data -> $2)->>$3))::int as humidity' +
-      ' from responses, prefs  where category = $1 and (to_char(to_timestamp(response_key-14440),$5))::date = preff_value::date and pref_type = $4 ', [cat, section, key, day, dateFormat, trimf])
+      ' from responses, prefs  where category = $1 and (to_char(to_timestamp(response_key-14440),$5))::date = preff_value::date and pref_type = $4 ', [cat, node, key, day, dateFormat, trimf])
     .then(function (data) { //build array of dew_point readings
       var tar = [];
-      for (var i = 0; i < data.length; i++) {
+      for (let i = 0; i < data.length; i++) {
         var total = [];
-        var date = [];
         total += Number(data[i].humidity);
-        console.log(total);
         tar.push(parseInt(total));
       }
-
-     // takae avg of array
-      var sum = tar.reduce( function(total, amount){
-        return total + amount
-      });
+      // takae avg of array
+      var sum = tar.reduce(function (total, amount) {});
       var avg = sum / tar.length;
-
       // response logic
       if (avg != null) {
         if (avg <= 55) {
@@ -116,9 +107,9 @@ function getAverageHumidity(req, res, next) {
 
 
 function getTopNews(req, res, next) {
-  var cat = 'news';
-  var section = 'articles';
-  var key = 'title';
+  let cat = 'news';
+  let section = 'articles';
+  let key = 'title';
   db.any('select ' +
       'b ->> $3 as title' +
       ' from responses a  join lateral jsonb_array_elements(response_data -> $2) b on true join prefs on (to_char(to_timestamp(response_key-14440),$5))::date = preff_value::date ' +
@@ -126,7 +117,7 @@ function getTopNews(req, res, next) {
     .then(function (data) {
       var tar = [];
 
-      for (var i = 0; i < data.length; i++) {
+      for (let i = 0; i < data.length; i++) {
         var total = [];
         total += data[i].title;
         tar.push(total);
@@ -136,14 +127,14 @@ function getTopNews(req, res, next) {
       var max = 0;
       var result;
 
-      for (var v in tar) {
+      for (let v in tar) {
         freq[tar[v]] = (freq[tar[v]] || 0) + 1;
         if (freq[tar[v]] > max) {
           max = freq[tar[v]];
           result = tar[v];
         }
       }
-      console.log(freq);
+    //  console.log(freq);
       res.status(200)
         .json({
           data: result
@@ -156,22 +147,22 @@ function getTopNews(req, res, next) {
 
 
 function getTopEvents(req, res, next) {
-  var events = 'events';
-  var name = 'name';
-  var text = 'text';
-  var start = 'start';
-  var local = 'local';
+  let events = 'events';
+  let name = 'name';
+  let text = 'text';
+  let start = 'start';
+  let local = 'local';
   db.any('select distinct' +
       '(b-> $2) ->> $3 as event_name,' +
       'substring((b-> $4) ->> $5,0,11) as date' +
       ' from responses ' +
       'join lateral jsonb_array_elements(response_data -> $1) b on true ' +
-      'join prefs c on to_date(substring((b-> $4) ->> $5,0,11),$6) between c.preff_value::date and c.preff_value::date + 14 '+
+      'join prefs c on to_date(substring((b-> $4) ->> $5,0,11),$6) between c.preff_value::date and c.preff_value::date + 14 ' +
       'and c.pref_type = $7 ' +
       'where category = $1 ' +
-      'order by 2 asc', [events, name, text, start, local, dateFormat,day ])
+      'order by 2 asc', [events, name, text, start, local, dateFormat, day])
     .then(function (data) {
-      console.log(data);
+    //  console.log(data);
       res.status(200)
         .json({
           data: data
@@ -188,7 +179,7 @@ function getDailyHealth(req, res, next) {
       'join prefs b on start = preff_value ' +
       'where pref_type = $1', [day])
     .then(function (data) {
-      console.log(data);
+     // console.log(data);
       res.status(200)
         .json({
           data: data
