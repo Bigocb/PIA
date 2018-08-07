@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" ng-app="nodeTodo">
+<html lang="en" ng-app="pia">
 
 <head>
   <meta charset="utf-8">
@@ -122,7 +122,6 @@
     <div class="row">
 
       <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-          <!-- TODO: remove windows.reload and use model to reload objects-->
           <div ng-controller="date" class="date">
 
                        
@@ -154,30 +153,30 @@
           <h2 class="sub-header">Weather</h2>
           <div class="row placeholders">
             <div ng-controller="humidity" class="col-xs-6 col-sm-3 placeholder3">
-              <div ng-repeat="todo in todoData" class="peek">
-                <h2>{{todo}}</h2>
+              <div ng-repeat="pia in piaData" class="peek">
+                <h2>{{pia}}</h2>
               </div>
               <h4>Humidity</h4>
               <span class="text-muted">Charlotte, NC</span>
             </div>
             <div ng-controller="ctl" class="col-xs-6 col-sm-3 placeholder2">
-              <div ng-repeat="todo in todoData" class="peek">
-                <h2>{{todo}}</h2>
+              <div ng-repeat="pia in piaData" class="peek">
+                <h2>{{pia}}</h2>
               </div>
               <h4>Weather Condition</h4>
               <span class="text-muted">Charlotte, NC</span>
             </div>
             <div ng-controller="temp" class="col-xs-6 col-sm-3 placeholder1">
-              <div ng-repeat="todo in todoData" class="peek">
-                <h1>{{todo}}</h1>
+              <div ng-repeat="pia in piaData" class="peek">
+                <h1>{{pia}}</h1>
               </div>
               <h4>Average Temp</h4>
               <span class="text-muted">Charlotte, NC</span>
             </div>
 
             <div ng-controller="news" class="col-xs-6 col-sm-3 headline">
-              <div ng-repeat="todo in todoData" class="peek">
-                <h2>{{todo}}</h2>
+              <div ng-repeat="pia in piaData" class="peek">
+                <h2>{{pia}}</h2>
                 <h4>Top Headline</h4>
               </div>
             </div>
@@ -194,9 +193,9 @@
               <th>date</th>
             </tr>
           </thead>
-              <tr ng-repeat="todo in todoData.data">
-                <td>{{ todo.event_name }}</td>
-                <td>{{ todo.date }}</td>
+              <tr ng-repeat="pia in piaData.data">
+                <td>{{ pia.event_name }}</td>
+                <td>{{ pia.date }}</td>
               </tr>
             </table>      
 
@@ -206,20 +205,20 @@
 
           <div ng-controller="health" class="test_1" >
             <h2>  My Health</h2>
-            <div ng-repeat="todo in todoData.data" class="tp_left">
-                <h1>{{ todo.flights_climbed }}</h1>
+            <div ng-repeat="pia in piaData.data" class="tp_left">
+                <h1>{{ pia.flights_climbed }}</h1>
                 <h4>Flights Climbed</h4>
             </div>
-            <div ng-repeat="todo in todoData.data" class="tp_right">
-                <h1>{{ todo.steps }}</h1>
+            <div ng-repeat="pia in piaData.data" class="tp_right">
+                <h1>{{ pia.steps }}</h1>
                 <h4>Steps</h4>
             </div>
-            <div ng-repeat="todo in todoData.data" class="bt_left">
-                <h1>{{ todo.distance }}</h1>
+            <div ng-repeat="pia in piaData.data" class="bt_left">
+                <h1>{{ pia.distance }}</h1>
                 <h4>Miles</h4>
             </div>
-            <div ng-repeat="todo in todoData.data" class="bt_right">
-                <h1>{{ todo.heart_rate }}</h1>
+            <div ng-repeat="pia in piaData.data" class="bt_right">
+                <h1>{{ pia.heart_rate }}</h1>
                 <h4>Heart Rate</h4>
             </div>
    

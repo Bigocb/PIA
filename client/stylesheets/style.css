@@ -8,7 +8,7 @@ a {
   color: rgb(121, 170, 189);
 }
 
-.todo-form {
+.pia-form {
   float: left;
   width: 20%;
   clear: left;
@@ -55,7 +55,7 @@ i.inactive {
   clear: left;
 }
 
-.todo_list {
+.pia_list {
   max-width: 90%;
 }
 

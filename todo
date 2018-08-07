@@ -21,16 +21,21 @@ Features:
             - login with social services (v2)
         - Allow daily journal customization at both cateory level and sources
         - User entered notes by day
+    
+    sources:
 
     Recommendations:
 
 
     Mobile:
 
+    
     Ideas:
 
         - convert inbound/outbound/util to microservices for matenence and ease of upgrade. 
            entire app doesn't have to be restarted for backend changes
+
+        - convert front end to use react native for mobile
 
 
 

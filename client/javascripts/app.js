@@ -1,22 +1,21 @@
-angular.module('nodeTodo', [])
+angular.module('pia', [])
   .controller('mainController', ($scope, $http) => {
     $scope.formData = {};
-    $scope.todoData = {};
+    $scope.piaData = {};
     // Get all temps
     $http.get('/util/date/')
       .success((data) => {
-        $scope.todoData = data;
+        $scope.piaData = data;
         // console.log(data);
       })
       .error((error) => {
         console.log('Error: ' + error);
       });
-    // Create a new todo
-    $scope.createTodo = () => {
+    $scope.updateParam = () => {
       $http.get('/util/updparam/', $scope.myText)
         .success((data) => {
           $scope.formData = {};
-          $scope.todoData = data;
+          $scope.piaData = data;
           //  console.log(data);
         })
         .error((error) => {
@@ -28,7 +27,7 @@ angular.module('nodeTodo', [])
       $http.get('/weather', $scope.formData)
         .success((data) => {
           $scope.formData = {};
-          $scope.todoData = data;
+          $scope.piaData = data;
           //  console.log(data);
         })
         .error((error) => {
@@ -41,7 +40,7 @@ angular.module('nodeTodo', [])
       $http.get('/events', $scope.formData)
         .success((data) => {
           $scope.formData = {};
-          $scope.todoData = data;
+          $scope.piaData = data;
           //  console.log(data);
         })
         .error((error) => {
@@ -54,7 +53,7 @@ angular.module('nodeTodo', [])
       $http.get('/news', $scope.formData)
         .success((data) => {
           $scope.formData = {};
-          $scope.todoData = data;
+          $scope.piaData = data;
           //  console.log(data);
         })
         .error((error) => {
@@ -67,7 +66,7 @@ angular.module('nodeTodo', [])
       $http.get('/media', $scope.formData)
         .success((data) => {
           $scope.formData = {};
-          $scope.todoData = data;
+          $scope.piaData = data;
           //  console.log(data);
         })
         .error((error) => {
@@ -82,7 +81,7 @@ angular.module('nodeTodo', [])
     $scope.updParam = () => {
       $http.get('/util/updparam/' + $scope.name)
         .success((data) => {
-          $scope.todoData = data;
+          $scope.piaData = data;
           //  console.log(data);
         })
         .error((error) => {
@@ -96,7 +95,7 @@ angular.module('nodeTodo', [])
     setInterval(function () {
       $http.get('/out/avgcondition/')
         .success((data) => {
-          $scope.todoData = data;
+          $scope.piaData = data;
           // console.log(data);
         })
         .error((error) => {
@@ -109,7 +108,7 @@ angular.module('nodeTodo', [])
     setInterval(function () {
       $http.get('/out/health/')
         .success((data) => {
-          $scope.todoData = data;
+          $scope.piaData = data;
           //  console.log(data);
         })
         .error((error) => {
@@ -122,7 +121,7 @@ angular.module('nodeTodo', [])
     setInterval(function () {
       $http.get('/out/avghumidity/')
         .success((data) => {
-          $scope.todoData = data;
+          $scope.piaData = data;
           //  console.log(data);
         })
         .error((error) => {
@@ -135,7 +134,7 @@ angular.module('nodeTodo', [])
     setInterval(function () {
       $http.get('/out/topnews/')
         .success((data) => {
-          $scope.todoData = data;
+          $scope.piaData = data;
           //  console.log(data);
         })
         .error((error) => {
@@ -148,7 +147,7 @@ angular.module('nodeTodo', [])
     setInterval(function () {
       $http.get('/out/curdate')
         .success((data) => {
-          $scope.todoData = data;
+          $scope.piaData = data;
           //  console.log(data);
         })
         .error((error) => {
@@ -159,7 +158,7 @@ angular.module('nodeTodo', [])
     $scope.updDate = () => {
       $http.get('/util/date/' + $scope.date)
         .success((data) => {
-          $scope.todoData = data;
+          $scope.piaData = data;
           //  console.log(data);
         })
         .error((error) => {
@@ -172,7 +171,7 @@ angular.module('nodeTodo', [])
     setInterval(function () {
       $http.get('/out/avgtemp')
         .success((data) => {
-          $scope.todoData = data;
+          $scope.piaData = data;
           // console.log(data);
         })
         .error((error) => {
@@ -185,7 +184,7 @@ angular.module('nodeTodo', [])
     setInterval(function () {
       $http.get('/out/events')
         .success((data) => {
-          $scope.todoData = data;
+          $scope.piaData = data;
           //  console.log(data);
         })
         .error((error) => {
