@@ -83,7 +83,11 @@ function getAverageHumidity(req, res, next) {
         tar.push(parseInt(total));
       }
       // takae avg of array
-      var sum = tar.reduce(function (total, amount) {});
+         // takae avg of array
+      var sum = tar.reduce( function(total, amount){
+        return total + amount
+      });
+      
       var avg = sum / tar.length;
       // response logic
       console.log(tar);
