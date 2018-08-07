@@ -77,7 +77,7 @@ function getAverageHumidity(req, res, next) {
       ' from responses, prefs  where category = $1 and (to_char(to_timestamp(response_key-14440),$5))::date = preff_value::date and pref_type = $4 ', [cat, node, key, day, dateFormat, trimf])
     .then(function (data) { //build array of dew_point readings
       var tar = [];
-      for (var i = 0; i < data.length; i++) {
+      for (let i = 0; i < data.length; i++) {
         var total = [];
         total += Number(data[i].humidity);
         tar.push(parseInt(total));
