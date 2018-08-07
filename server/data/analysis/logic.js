@@ -86,6 +86,8 @@ function getAverageHumidity(req, res, next) {
       var sum = tar.reduce(function (total, amount) {});
       var avg = sum / tar.length;
       // response logic
+      console.log(tar);
+      console.log(sum);
       console.log(avg);
       if (avg != null) {
         if (avg <= 55) {
