@@ -90,15 +90,12 @@ function getAverageHumidity(req, res, next) {
       
       var avg = sum / tar.length;
       // response logic
-      console.log(tar);
-      console.log(sum);
-      console.log(avg);
       if (avg != null) {
         if (avg <= 55) {
           feel = 'Dry and Comfortable'
-        } else if (avg > 55 && avg < 75) {
+        } else if (avg > 55 && avg < 70) {
           feel = 'Kind of Sticky'
-        } else if (avg >= 75) {
+        } else if (avg >= 70) {
           feel = 'Muggy and Oppressive'
         }
       }
