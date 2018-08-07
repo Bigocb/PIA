@@ -8,7 +8,8 @@ Tech Debt:
 - reorganize angular models, improve refresh time
 - clean up <head> odf templates
 - setup circleci for CI
-- swithc date select to angular model with availible dates
+- switch date select to angular model with availible dates.
+- Select should default to the last choosen date when reloaded
 - implement template system for modularizing front end
 
 
