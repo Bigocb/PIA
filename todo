@@ -1,4 +1,34 @@
-- redis que for handling multiple calls to endpoints
-- implement async/await  - https://dev.to/geoff/writing-asyncawait-middleware-in-express-6i0
-- replace angular timers with push (socket.io or pusher?)
+Tech Debt:
+
+- setup csv parsing and stream to import daily activity to Db 
+- Replace angular intervals with pusf yo models (socket.io)
+- message queues for handling multiple calls to endpoints. Load handling
+- implement async/await to avoid blocking
+- revise query for events and avghumidity to lower response time if possible
+- reorganize angular models, improve refresh time
+- clean up <head> odf templates
+- setup circleci for CI
+- swithc date select to angular model with availible dates
+
+Features:
+
+    Users:
+    
+        - user management system (will probably need to move source choices to DB or redis)
+            - login/logout/management
+            - login with social services (v2)
+        - Allow daily journal customization at both cateory level and sources
+        - User entered notes by day
+
+    Recommendations:
+
+
+    Mobile:
+
+
+
+
+
+
+
 

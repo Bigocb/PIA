@@ -1,9 +1,9 @@
 const express = require('express');
 const router = express.Router();
 const path = require('path');
-var inb = require('../../server/data/inbound/inbound');
-var util = require('../../server/data/util');
-var analysis = require('../../server/data/analysis/logic')
+const inb = require('../../server/data/inbound/inbound');
+const util = require('../../server/data/util');
+const analysis = require('../../server/data/analysis/logic')
 
 // util routes
 router.get('/util/updparam/:name', util.updatePrefs);
