@@ -1,14 +1,14 @@
 const express = require('express');
 const path = require('path');
-var morgan = require('morgan');
+const morgan = require('morgan');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
-var winston = require('./config/winston');
+const winston = require('./config/winston');
 const routes = require('./server/routes/index');
 const app = express();
 const scheduler = require('./server/data/controls/schedules')
-var chai = require('chai');
-var chaiHttp = require('chai-http');
+const chai = require('chai');
+const chaiHttp = require('chai-http');
 
 
 
