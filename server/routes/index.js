@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const path = require('path');
 const inb = require('../../server/data/inbound/inbound');
+const test = require('../../server/data/fileprocessing');
 const util = require('../../server/data/util');
 const analysis = require('../../server/data/analysis/logic')
 
@@ -17,6 +18,7 @@ router.get('/out/avghumidity/', analysis.getAverageHumidity);
 router.get('/out/topnews/', analysis.getTopNews);
 router.get('/out/events', analysis.getTopEvents);
 router.get('/out/health', analysis.getDailyHealth);
+router.get('/out/bobby', test.myFile);
 router.get('/out/data', util.getData);
 router.get('/out/curdate', util.getCurrDate);
 router.get('/out/datacnt', util.getDataCount);
@@ -27,6 +29,7 @@ router.get('/weather', inb.getWeather);
 router.get('/media', inb.getMedia);
 router.get('/news', inb.getNews);
 router.get('/events', inb.getEvents);
+router.get('/health', inb.getHealth);
 
 
 

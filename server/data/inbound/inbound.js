@@ -2,6 +2,10 @@ const Promise = require("bluebird");
 const request = require('request-promise');
 const db = require('../../database/connections');
 const sources = require('./sources')
+var healthFile = require('../fileprocessing');
+var healthData = healthFile.myFile;
+
+console.log(healthData);
 
 function getWeather(req, res, next) {
   var src = [];
@@ -18,6 +22,39 @@ function getWeather(req, res, next) {
       insJson = results[i];
       console.log(src);
       let source = 'weather';
+      db.none('insert into responses(response_data, response_key, category,source)' +
+          'values($1,extract(epoch from current_timestamp),$2,$3)', [insJson, source, src])
+        .then(function () {
+          res.status(200)
+            .json({
+              status: 'success',
+              message: 'Inserted',
+              data: insJson
+            });
+
+        })
+    }
+  }, function (err) {
+    return next(err);
+  });
+};
+
+
+function getHealth(req, res, next) {
+  var src = [];
+  Promise.map(sources.requestsHealth, function (obj) {
+    return request(obj).then(function (body) {
+
+      src.push(obj.url);
+      return JSON.parse(body);
+
+    });
+
+  }).then(function (results) {
+    for (let i = 0; i < results.length; i++) {
+      insJson = results[i];
+      console.log(src);
+      let source = 'health';
       db.none('insert into responses(response_data, response_key, category,source)' +
           'values($1,extract(epoch from current_timestamp),$2,$3)', [insJson, source, src])
         .then(function () {
@@ -144,5 +181,5 @@ module.exports = {
   getMedia: getMedia,
   getNews: getNews,
   getEvents: getEvents,
-  getMedia2: getMedia2
+  getHealth: getHealth
 };

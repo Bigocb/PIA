@@ -12,6 +12,11 @@ var requestsmedia = [
     url: 'https://newsapi.org/v2/top-headlines?sources=google-news&apiKey=1654f224d44d4dc491f416ef7950a051',
   },
   ];
+
+  var requestsHealth = [{
+    url: 'http://localhost:3000/out/bobby',
+  },
+  ];
   
   var requestsevents = [{
     url: 'https://www.eventbriteapi.com/v3/events/search/?location.address=charlotte',
@@ -29,5 +34,6 @@ var requestsmedia = [
     requestsweather,
     requestsevents,
     requestsnews,
+    requestsHealth,
     requestsmedia,
   };
