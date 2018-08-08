@@ -1,9 +1,7 @@
 const Promise = require("bluebird");
-const express = require('express');
 const request = require('request-promise');
 const db = require('../../database/connections');
 const sources = require('./sources')
-
 
 function getWeather(req, res, next) {
   var src = [];
@@ -123,10 +121,28 @@ function getMedia(req, res, next) {
   });
 };
 
+function getMedia2(req, res, next) {
+  var src = file;
+  var values = [];
+  for(var i=0; i< src.length; i++)
+  values.push([src])
+        .then(function (values) {
+          res.status(200)
+            .json({
+              status: 'success',
+              message: 'Inserted',
+              data: values
+            });
+        }, function (err) {
+    return next(err);
+  });
+};
+
 
 module.exports = {
   getWeather: getWeather,
   getMedia: getMedia,
   getNews: getNews,
-  getEvents: getEvents
+  getEvents: getEvents,
+  getMedia2: getMedia2
 };

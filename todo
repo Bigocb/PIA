@@ -1,7 +1,7 @@
 Tech Debt:
 
 - setup csv parsing and stream to import daily activity to Db 
-- Replace angular intervals with pusf yo models (socket.io)
+- Replace angular intervals with push to models (socket.io)
 - message queues for handling multiple calls to endpoints. Load handling
 - implement async/await to avoid blocking
 - revise query for events and avghumidity to lower response time if possible
@@ -10,7 +10,6 @@ Tech Debt:
 - setup circleci for CI
 - swithc date select to angular model with availible dates
 - implement template system for modularizing front end
-
 
 Features:
 
@@ -26,10 +25,8 @@ Features:
 
     Recommendations:
 
-
     Mobile:
 
-    
     Ideas:
 
         - convert inbound/outbound/util to microservices for matenence and ease of upgrade. 
