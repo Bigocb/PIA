@@ -14,6 +14,8 @@ csv()
           .json({
             data: jsonObj
           });
+}) .catch(function (err) {
+  return next(err);
 });
 }
 

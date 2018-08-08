@@ -6,6 +6,7 @@ const sources = require('./sources')
 var healthFile = require('../fileprocessing');
 var healthData = healthFile.myFile;
 
+console.log(healthData);
 
 function getWeather(req, res, next) {
   var src = [];
@@ -39,26 +40,37 @@ function getWeather(req, res, next) {
   });
 };
 
+
 function getHealth(req, res, next) {
-  var id = healthData;
-  console.log(id);
-  var source = 'health';
-  src = 'file';
-  db.none('insert into responses(response_data, response_key, category,source)' +
-  'values($1,extract(epoch from current_timestamp),$2,$3)', [id, source, src])
-    .then(function (results) {
-      console.log(id);
-      res.status(200)
-        .json({
-          status: 'success',
-          message: 'Updated',
-          data: results
-        });
-    })
-    .catch(function (err) {
-      console.log('error');
-      return next(err);
+  var src = [];
+  Promise.map(sources.requestsHealth, function (obj) {
+    return request(obj).then(function (body) {
+
+      src.push(obj.url);
+      return JSON.parse(body);
+
     });
+
+  }).then(function (results) {
+    for (let i = 0; i < results.length; i++) {
+      insJson = results[i];
+      console.log(src);
+      let source = 'health';
+      db.none('insert into responses(response_data, response_key, category,source)' +
+          'values($1,extract(epoch from current_timestamp),$2,$3)', [insJson, source, src])
+        .then(function () {
+          res.status(200)
+            .json({
+              status: 'success',
+              message: 'Inserted',
+              data: insJson
+            });
+
+        })
+    }
+  }, function (err) {
+    return next(err);
+  });
 };
 
 function getNews(req, res, next) {
