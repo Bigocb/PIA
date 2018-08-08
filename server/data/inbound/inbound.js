@@ -3,7 +3,8 @@ const express = require('express');
 const request = require('request-promise');
 const db = require('../../database/connections');
 const sources = require('./sources')
-const file = require('../fileprocessing');
+var loadPortfolio = require('../fileprocessing');
+var answer = loadPortfolio.fileAnswer;
 
 
 function getWeather(req, res, next) {
@@ -39,13 +40,13 @@ function getWeather(req, res, next) {
 };
 
 function getHealth(req, res, next) {
-  var id = test;
+  var id = answer;
   var source = 'health';
   src = 'file';
   db.none('insert into responses(response_data, response_key, category,source)' +
   'values($1,extract(epoch from current_timestamp),$2,$3)', [id, source, src])
     .then(function () {
-      console.log('test');
+      console.log(id);
       res.status(200)
         .json({
           status: 'success',
@@ -53,6 +54,7 @@ function getHealth(req, res, next) {
         });
     })
     .catch(function (err) {
+      console.log(id);
       console.log('fail');
       return next(err);
     });

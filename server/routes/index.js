@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const path = require('path');
 const inb = require('../../server/data/inbound/inbound');
+const test = require('../../server/data/inbound/test');
 const util = require('../../server/data/util');
 const analysis = require('../../server/data/analysis/logic')
 
@@ -17,6 +18,7 @@ router.get('/out/avghumidity/', analysis.getAverageHumidity);
 router.get('/out/topnews/', analysis.getTopNews);
 router.get('/out/events', analysis.getTopEvents);
 router.get('/out/health', analysis.getDailyHealth);
+router.get('/out/test', test.func);
 router.get('/out/data', util.getData);
 router.get('/out/curdate', util.getCurrDate);
 router.get('/out/datacnt', util.getDataCount);
