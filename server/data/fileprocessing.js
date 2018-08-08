@@ -5,11 +5,18 @@ a,b,c
 */
 const csvFilePath='./server/data/Health Data.csv';
 const csv=require('csvtojson');
-var fileAnswer = csv()
+
+function myFile(req, res, next){
+csv()
 .fromFile(csvFilePath)
 .then((jsonObj)=>{
-    console.log(jsonObj);
- return jsonObj;
+        res.status(200)
+          .json({
+            data: jsonObj
+          });
 });
+}
 
-exports = fileAnswer;
+module.exports = {
+    myFile: myFile
+  };

@@ -1,9 +1,10 @@
-var loadPortfolio = require('../fileprocessing');
+var healthFile = require('../fileprocessing');
 
-var answer = loadPortfolio.fileAnswer;
+var healthData = healthFile.myFile;
 
   function func(data) {
-    console.log('Line: ' + answer);
+    console.log('Line: ' + healthData);
+    return healthData;
   };
 
   module.exports = {
