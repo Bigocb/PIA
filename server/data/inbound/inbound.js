@@ -3,6 +3,7 @@ const express = require('express');
 const request = require('request-promise');
 const db = require('../../database/connections');
 const sources = require('./sources')
+const file = require('../fileprocessing');
 
 
 function getWeather(req, res, next) {
@@ -35,6 +36,26 @@ function getWeather(req, res, next) {
   }, function (err) {
     return next(err);
   });
+};
+
+function getHealth(req, res, next) {
+  var id = test;
+  var source = 'health';
+  src = 'file';
+  db.none('insert into responses(response_data, response_key, category,source)' +
+  'values($1,extract(epoch from current_timestamp),$2,$3)', [id, source, src])
+    .then(function () {
+      console.log('test');
+      res.status(200)
+        .json({
+          status: 'success',
+          message: 'Updated'
+        });
+    })
+    .catch(function (err) {
+      console.log('fail');
+      return next(err);
+    });
 };
 
 function getNews(req, res, next) {
@@ -128,5 +149,6 @@ module.exports = {
   getWeather: getWeather,
   getMedia: getMedia,
   getNews: getNews,
-  getEvents: getEvents
+  getEvents: getEvents,
+  getHealth: getHealth
 };
