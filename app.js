@@ -9,15 +9,13 @@ const app = express();
 const scheduler = require('./server/data/controls/schedules')
 const chai = require('chai');
 const chaiHttp = require('chai-http');
-
-
-
 chai.use(chaiHttp);
 
 
 app.use(morgan('combined', {
   stream: winston.stream
 }));
+
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
   extended: false
@@ -35,10 +33,18 @@ app.use((req, res, next) => {
   next(err);
 });
 
+/*
+
+app.use(function (err, req, res, next) {
+  console.error(err)
+  res.status(404).send('not found')
+})
+
+*/
+
 // error handlers
 
 // development error handler
-// will print stacktrace
 if (app.get('env') === 'development') {
   app.use((err, req, res, next) => {
     res.status(err.status || 500);
@@ -50,7 +56,6 @@ if (app.get('env') === 'development') {
 }
 
 // production error handler
-// no stacktraces leaked to user
 app.use((err, req, res, next) => {
   res.status(err.status || 500);
   res.json({
