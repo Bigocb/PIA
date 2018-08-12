@@ -9,7 +9,6 @@ const analysis = require('../../server/data/analysis/logic')
 // util routes
 router.get('/util/updparam/:name', util.updatePrefs);
 router.get('/util/date/:date', util.updateDate);
-router.get('/util/file', inb.getMedia2);
 
 // Outbound (frontend) Routes
 router.get('/out/avgtemp/', analysis.getAverageTemps);
